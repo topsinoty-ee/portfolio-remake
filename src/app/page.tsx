@@ -1,12 +1,7 @@
 import Link from "next/link";
 import { Button } from "~/components/ui/button";
 import { Badge } from "~/components/ui/badge";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "~/components/ui/tooltip";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "~/components/ui/tooltip";
 import { SectionHeader } from "~/components/ui/sectionHeader";
 import { Suspense } from "react";
 import { Skeleton } from "~/components/ui/skeleton";
@@ -17,20 +12,16 @@ import { SkillBadgeList } from "~/components/ui/skillBadgeList";
 
 export default function HomePage() {
   return (
-    <main className="flex flex-col gap-20">
+    <main className="flex flex-col gap-20 md:gap-32">
       <section className="flex h-full max-h-max w-full flex-col gap-0 md:flex-row md:gap-20">
         <div className="order-1 flex h-full min-h-96 w-full flex-col gap-15 md:gap-10">
           <div className="flex flex-col gap-2 md:gap-2.5">
-            <Badge className="bg-secondary text-secondary-foreground rounded-2xl px-4 md:text-lg">
-              Frontend dev
-            </Badge>
+            <Badge className="bg-secondary text-secondary-foreground rounded-2xl px-4 md:text-lg">Frontend dev</Badge>
             <div>
               <SectionHeader size="lg">Hi world!</SectionHeader>
               <h2 className="text-xl font-light md:text-2xl">
-                I&apos;m{" "}
-                <span className="text-accent font-semibold">Promise</span>, a
-                developer that cares about maintainable code and scalable web
-                solutions &#x1f64c;
+                I&apos;m <span className="text-accent font-semibold">Promise</span>, a developer that cares about
+                maintainable code and scalable web solutions &#x1f64c;
               </h2>
             </div>
           </div>
@@ -71,10 +62,7 @@ export default function HomePage() {
             fallback={
               <div className="grid h-full w-full grid-cols-1 gap-10 transition-all duration-300 md:grid-cols-2">
                 {[...Array<number>(2)].map((_, i) => (
-                  <Skeleton
-                    key={i}
-                    className="bg-muted h-[200px] w-full rounded-lg transition-all"
-                  />
+                  <Skeleton key={i} className="bg-muted h-[200px] w-full rounded-lg transition-all" />
                 ))}
               </div>
             }
@@ -85,11 +73,7 @@ export default function HomePage() {
 
         <div className="flex w-full items-center justify-start gap-4">
           <Button variant={"outline"} asChild>
-            <Link
-              href="https://github.com/topsinoty-ee?tab=repositories"
-              target={"_blank"}
-              rel={"noopener noreferrer"}
-            >
+            <Link href="https://github.com/topsinoty-ee?tab=repositories" target={"_blank"} rel={"noopener noreferrer"}>
               <SiGithub />
               My repos
             </Link>
@@ -102,10 +86,7 @@ export default function HomePage() {
           </Button>
         </div>
       </section>
-      <section
-        id="aboutMe"
-        className="flex h-full min-h-max w-full flex-col items-start gap-15 md:flex-row md:gap-20"
-      >
+      <section id="aboutMe" className="flex h-full min-h-max w-full flex-col items-start gap-15 md:flex-row md:gap-20">
         <div className="flex h-max w-full flex-col items-start gap-5">
           <TooltipProvider>
             <Tooltip>
@@ -113,11 +94,7 @@ export default function HomePage() {
                 <Badge>Who am I?</Badge>
               </TooltipTrigger>
               <TooltipContent>
-                <a
-                  href="https://www.youtube.com/watch?v=BBJa32lCaaY"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <a href="https://www.youtube.com/watch?v=BBJa32lCaaY" target="_blank" rel="noopener noreferrer">
                   {"¯\\_(ツ)_/¯"}
                 </a>
               </TooltipContent>
@@ -126,46 +103,24 @@ export default function HomePage() {
           <SectionHeader type="info">You can call me Promise</SectionHeader>
           <p className="inline-flex flex-col gap-2 text-sm font-medium md:text-lg">
             <span className="text-muted-foreground">
-              I&apos;m a frontend dev who loves dabbling across tech to build
-              modular, scalable web experiences!
+              I&apos;m a frontend dev who loves dabbling across tech to build modular, scalable web experiences!
             </span>
             <span>
-              I specialize in crafting clean, fast apps with modern JavaScript
-              frameworks. I obsess over clean code, smart architecture, and
-              seamless user experiences. When I&apos;m not coding, you&apos;ll
-              find me either reading a really good book or or on the court 🏀
+              I specialize in crafting clean, fast apps with modern JavaScript frameworks. I obsess over clean code,
+              smart architecture, and seamless user experiences. When I&apos;m not coding, you&apos;ll find me either
+              reading a really good book or or on the court 🏀
             </span>
           </p>
           <Button asChild className="group">
-            <a
-              href="/promise_temitope.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a href="/promise_temitope.pdf" target="_blank" rel="noopener noreferrer">
               My CV <ExternalLink className="group-hover:animate-in" />
             </a>
           </Button>
           <SkillBadgeList
             skills={{
-              core: [
-                "React",
-                "Next.js",
-                "TypeScript",
-                "Node.js",
-                "TailwindCSS",
-              ],
+              core: ["React", "Next.js", "TypeScript", "Node.js", "TailwindCSS"],
               tools: ["Git", "Figma", "Vitest", "Postman", "Apollo Client"],
-              others: [
-                "MongoDB",
-                "Shadcn/ui",
-                "GraphQL",
-                "Angular",
-                "Flask",
-                "Python",
-                "Express.js",
-                "Java",
-                "nx",
-              ],
+              others: ["MongoDB", "Shadcn/ui", "GraphQL", "Angular", "Flask", "Python", "Express.js", "Java", "nx"],
             }}
           />
         </div>
@@ -201,9 +156,7 @@ export default function HomePage() {
             <Badge variant={"secondary"}>Contact me!</Badge>
             <div>
               <SectionHeader type="secondary">Get in touch</SectionHeader>
-              <p className="text-muted-foreground text-sm font-light md:text-lg">
-                I&apos;m almost always online
-              </p>
+              <p className="text-muted-foreground text-sm font-light md:text-lg">I&apos;m almost always online</p>
             </div>
           </div>
           {/* <Socials withText /> */}
@@ -213,3 +166,4 @@ export default function HomePage() {
     </main>
   );
 }
+
