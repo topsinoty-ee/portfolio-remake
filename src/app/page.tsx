@@ -9,6 +9,8 @@ import { SiGithub } from "@icons-pack/react-simple-icons";
 import { ExternalLink, Luggage } from "lucide-react";
 import { ProjectsList } from "~/components/layout/projects";
 import { SkillBadgeList } from "~/components/ui/skillBadgeList";
+import { DataCard } from "~/components/layout/datacard";
+import { BetterForm } from "~/components/betterForm/";
 
 export default function HomePage() {
   return (
@@ -37,7 +39,7 @@ export default function HomePage() {
         </div>
         <div className="drop-shadow-accent shadow-accent border-card relative z-31 order-2 flex h-full min-h-96 w-full place-content-center place-items-center rounded-2xl bg-[0] p-1 shadow drop-shadow-sm">
           <div className="bg-popover/99 flex h-max max-h-full w-full flex-col gap-5 rounded-2xl sm:h-96">
-            {/* <DataCard /> */}
+            <DataCard />
           </div>
         </div>
       </section>
@@ -163,7 +165,13 @@ export default function HomePage() {
         </div>
         {/* <ContactForm /> */}
       </section>
+      <BetterForm
+        fields={[
+          {
+            name: "",
+          },
+        ]}
+      />
     </main>
   );
 }
-
