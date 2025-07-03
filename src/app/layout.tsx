@@ -50,7 +50,6 @@ const jsonLd = {
 
 export const metadata: Metadata = {
   metadataBase: new URL(String(env.WEBSITE)),
-  // title: "Promise Temitope | Portfolio",
   title: {
     default: "Promise Temitope | Portfolio",
     template: "Promise Temitope | %s",
@@ -115,6 +114,12 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <Navbar />
         <section className="flex-1 p-10 md:p-20">{children}</section>
         <Footer />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
+          }}
+        />
       </body>
     </html>
   );
