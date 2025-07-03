@@ -4,16 +4,22 @@ import { type Metadata } from "next";
 import { JetBrains_Mono, Ubuntu_Sans } from "next/font/google";
 import { Navbar } from "~/components/layout/navbar";
 import { Footer } from "~/components/layout/footer";
+import { env } from "~/env";
 
 export const metadata: Metadata = {
-  title: "Promise Temitope | Portfolio",
+  metadataBase: new URL(String(env.WEBSITE)),
+  // title: "Promise Temitope | Portfolio",
+  title: {
+    default: "Promise Temitope | Portfolio",
+    template: "Promise Temitope | %s",
+  },
   description: "A small portfolio to show my projects and skills",
   openGraph: {
     title: "Promise Temitope | Portfolio",
     description: "A small portfolio to show my projects and skills",
     type: "website",
     locale: "en",
-    url: "topsinoty.vercel.app",
+    url: String(env.WEBSITE),
     siteName: "Promise Temitope",
   },
   icons: [{ rel: "icon", url: "/favicon.ico" }],
