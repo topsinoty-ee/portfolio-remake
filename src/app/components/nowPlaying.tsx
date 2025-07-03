@@ -1,5 +1,7 @@
+"use client"; // Mark as Client Component
+
 import { SiSpotify } from "@icons-pack/react-simple-icons";
-import ky from "ky";
+import { useEffect, useState } from "react";
 import { cn } from "~/lib/utils";
 
 export interface Track {
@@ -11,18 +13,50 @@ export interface Track {
   };
 }
 
-async function getRecentTrack() {
-  return await ky.get("http://localhost:3000/api/spotify").json<Track>();
-}
-const track = await getRecentTrack();
 export const NowPlaying = () => {
+  const [track, setTrack] = useState<Track | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchTrack = async () => {
+      try {
+        const res = await fetch("/api/spotify");
+        const track = (await res.json()) as Track;
+        setTrack(track);
+      } catch (error) {
+        console.error("Failed to fetch track:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    const intervalId = setInterval(() => {
+      void fetchTrack();
+    }, 10000);
+
+    void fetchTrack();
+
+    return () => clearInterval(intervalId);
+  }, []);
+
+  if (isLoading) {
+    return (
+      <div className="bg-muted/10 flex items-center gap-2.5 rounded-b-lg p-4 text-xs">
+        <SiSpotify size={12} className="text-primary" />
+      </div>
+    );
+  }
+
   return (
     <div className="bg-muted/10 flex items-center gap-2.5 rounded-b-lg p-4 text-xs">
       <SiSpotify
         size={12}
-        className={cn("text-primary", { "animate-[spin_1.85s_linear_infinite]": !track["@attr"]?.nowPlaying })}
+        className={cn("text-primary", {
+          "animate-[spin_2s_linear_infinite]": !track?.["@attr"]?.nowPlaying,
+        })}
       />
-      {track ? (
+      {isLoading ? (
+        <span className="text-muted-foreground">Loading...</span>
+      ) : track ? (
         <a
           href={track.url}
           target="_blank"
@@ -36,29 +70,4 @@ export const NowPlaying = () => {
       )}
     </div>
   );
-
-  /**
-   *
-   * const { track, loading } = useNowPlaying();
-
-  if (loading) return <div className="bg-muted/10 flex items-center gap-2.5 rounded-b-lg p-4 text-xs" />;
-
-  return (
-    <div className="bg-muted/10 flex items-center gap-2.5 rounded-b-lg p-4 text-xs">
-      <SiSpotify size={12} className={cn({ "animate-[spin_1.85s_linear_infinite]": !!track })} />
-      {track ? (
-        <a
-          href={track.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-accent hover:text-primary underline underline-offset-2"
-        >
-          {track.artist["#text"]} — {track.name}
-        </a>
-      ) : (
-        <span className="text-muted-foreground">Not playing anything rn</span>
-      )}
-    </div>
-  );
-   */
 };
