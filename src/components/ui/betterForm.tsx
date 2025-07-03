@@ -12,10 +12,10 @@ import {
   type ControllerRenderProps,
   type DefaultValues,
 } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { standardSchemaResolver } from "@hookform/resolvers/standard-schema"; // have to find a way to align properly with zod...
 import { cn } from "~/lib/utils";
 import { useCallback, useMemo } from "react";
-import { type ZodTypeAny } from "zod";
+import type { ZodSchema } from "zod";
 
 type FormFieldType = "text" | "email" | "tel" | "textarea";
 
@@ -35,7 +35,7 @@ interface BetterFormCallbackUtils<FormValues extends FieldValues> extends UseFor
 }
 
 interface BetterFormProps<FormValues extends FieldValues> {
-  formSchema: ZodTypeAny; // need to find a stricter solution
+  formSchema: ZodSchema<FormValues>; // need to find a stricter solution
   fields: ReadonlyArray<FormFieldConfig<FormValues>>;
   onSubmit: (values: FormValues) => Promise<void>;
   defaultValues?: DefaultValues<FormValues>;
@@ -56,7 +56,7 @@ export function BetterForm<FormValues extends FieldValues>({
   onError,
 }: BetterFormProps<FormValues>) {
   const form = useForm<FormValues>({
-    resolver: zodResolver(formSchema),
+    resolver: standardSchemaResolver(formSchema),
     defaultValues,
     mode: "onChange",
   });

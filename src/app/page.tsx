@@ -7,10 +7,10 @@ import { Suspense } from "react";
 import { Skeleton } from "~/components/ui/skeleton";
 import { SiGithub } from "@icons-pack/react-simple-icons";
 import { ExternalLink, Luggage } from "lucide-react";
-import { ProjectsList } from "~/components/layout/projects";
+import { ProjectsList } from "./components/projects";
 import { SkillBadgeList } from "~/components/ui/skillBadgeList";
-import { DataCard } from "~/components/layout/datacard";
-import { BetterForm } from "~/components/betterForm/";
+import { DataCard } from "./components/datacard";
+import { ContactForm } from "./components/contactForm";
 
 export default function HomePage() {
   return (
@@ -163,15 +163,8 @@ export default function HomePage() {
           </div>
           {/* <Socials withText /> */}
         </div>
-        {/* <ContactForm /> */}
+        <ContactForm />
       </section>
-      <BetterForm
-        fields={[
-          {
-            name: "",
-          },
-        ]}
-      />
     </main>
   );
 }

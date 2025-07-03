@@ -1,6 +1,6 @@
 // import { TriangleAlert } from "lucide-react";
 // import { Alert, AlertDescription } from "../ui/alert";
-import { ProjectCard } from "../ui/projectCard";
+import { ProjectCard } from "~/components/ui/projectCard";
 import type { ProjectPublicDetails } from "~/types/project";
 
 export const ProjectsList = () => {
@@ -70,4 +70,3 @@ export const ProjectsList = () => {
     </div>
   );
 };
-

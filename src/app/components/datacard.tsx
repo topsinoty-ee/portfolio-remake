@@ -1,8 +1,8 @@
 "use client";
 
 import { cn } from "~/lib/utils";
-import { Button } from "../ui/button";
-import { NowPlaying } from "../layout/nowPlaying";
+import { Button } from "~/components/ui/button";
+import { NowPlaying } from "./nowPlaying";
 import { toast } from "sonner";
 import React from "react";
 
@@ -66,7 +66,7 @@ export const DataCard = () => {
           ))}
         </div>
 
-        <div className="grid w-full grid-cols-1 gap-2 sm:grid-cols-2">
+        <div className="grid w-full flex-1 grid-cols-1 gap-2 sm:grid-cols-2">
           <div className="bg-muted/10 shadow-card flex flex-col gap-1 p-4 shadow-sm sm:rounded-r-lg">
             <span className="text-primary font-medium">🛠️ Stack Bias</span>
             {data.stackBias.map((item, idx) => (
@@ -74,7 +74,7 @@ export const DataCard = () => {
             ))}
           </div>
 
-          <div className="bg-muted/10 shadow-card flex flex-col gap-1 p-4 shadow-sm sm:rounded-l-lg">
+          <div className="bg-muted/10 shadow-card flex flex-col gap-1 p-4 shadow-sm md:rounded-l-lg">
             <span className="text-primary font-medium">📅 Timeline</span>
             <span>{data.timeline.availability}</span>
             <div className="*:[&_a:hover]:text-secondary mt-1 flex flex-col gap-0.5">
@@ -89,7 +89,7 @@ export const DataCard = () => {
           </div>
         </div>
 
-        {NowPlaying && <NowPlaying />}
+        <NowPlaying />
       </div>
     </div>
   );
