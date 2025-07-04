@@ -22,7 +22,7 @@ export const Footer = () => (
       <LogoutButton variant={"destructive"} /> */}
     </div>
 
-    <div className="hidden h-full w-1/2 items-end justify-end self-end bg-black md:flex">
+    <div className="hidden h-full w-1/2 items-end justify-end self-end md:flex">
       <Badge variant="outline" className="drop-shadow-accent bg-card px-4 py-2.5 text-lg drop-shadow-xs">
         Find me online @topsinoty
       </Badge>
