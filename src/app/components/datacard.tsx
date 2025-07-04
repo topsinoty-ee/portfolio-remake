@@ -42,7 +42,7 @@ export const DataCard = () => {
 
   return (
     <div className="font-jets flex h-full w-full flex-col overflow-hidden rounded-2xl font-light">
-      <div className="border-accent/50 flex h-10 w-full items-center justify-between border-b">
+      <div className="border-accent/50 bg-muted/40 flex h-10 w-full items-center justify-between border-b">
         <div className="flex items-center gap-2 px-4">
           {["destructive", "secondary", "primary"].map((color) => (
             <div key={color} className={`size-3 rounded-full bg-${color}`} />
@@ -78,7 +78,7 @@ export const DataCard = () => {
       </div>
 
       <div className="shadow-card flex grow flex-col gap-2 text-sm shadow-sm transition-transform">
-        <div className="bg-muted/10 flex flex-col gap-1 p-4">
+        <div className="bg-muted/40 flex flex-col gap-1 p-4">
           <span className="text-primary font-medium">🚧 Current Affairs</span>
           {data.currentAffairs.map((item, idx) => (
             <span key={idx}>- {item}</span>
@@ -86,14 +86,14 @@ export const DataCard = () => {
         </div>
 
         <div className="grid w-full flex-1 grid-cols-1 gap-2 sm:grid-cols-2">
-          <div className="bg-muted/10 shadow-card flex flex-col gap-1 p-4 shadow-sm sm:rounded-r-lg">
+          <div className="bg-muted/40 shadow-card flex flex-col gap-1 p-4 shadow-sm sm:rounded-r-lg">
             <span className="text-primary font-medium">🛠️ Stack Bias</span>
             {data.stackBias.map((item, idx) => (
               <span key={idx}>- {item}</span>
             ))}
           </div>
 
-          <div className="bg-muted/10 shadow-card flex flex-col gap-1 p-4 shadow-sm md:rounded-l-lg">
+          <div className="bg-muted/40 shadow-card flex flex-col gap-1 p-4 shadow-sm md:rounded-l-lg">
             <span className="text-primary font-medium">📅 Timeline</span>
             <span>{data.timeline.availability}</span>
             <div className="*:[&_a:hover]:text-secondary mt-1 flex flex-col gap-0.5">

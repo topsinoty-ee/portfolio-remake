@@ -40,14 +40,14 @@ export const NowPlaying = () => {
 
   if (isLoading) {
     return (
-      <div className="bg-muted/10 flex items-center gap-2.5 rounded-b-lg p-4 text-xs">
+      <div className="bg-muted/40 flex items-center gap-2.5 rounded-b-lg p-4 text-xs">
         <SiSpotify size={12} className="text-primary" />
       </div>
     );
   }
 
   return (
-    <div className="bg-muted/10 flex items-center gap-2.5 rounded-b-lg p-4 text-xs">
+    <div className="bg-muted/40 flex items-center gap-2.5 rounded-b-lg p-4 text-xs">
       <SiSpotify
         size={12}
         className={cn("text-primary", {
