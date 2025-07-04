@@ -15,7 +15,7 @@ import { ContactForm } from "./components/contactForm";
 export default function HomePage() {
   return (
     <main className="flex flex-col gap-20 md:gap-32">
-      <section className="flex h-full max-h-max w-full flex-col gap-0 md:flex-row md:gap-20">
+      <section className="flex h-full max-h-max w-full flex-col gap-0 md:flex-row md:flex-wrap md:gap-20 lg:flex-nowrap">
         <div className="order-1 flex h-full min-h-96 w-full flex-col gap-15 md:gap-10">
           <div className="flex flex-col gap-2 md:gap-2.5">
             <Badge className="bg-secondary text-secondary-foreground rounded-2xl px-4 md:text-lg">Frontend dev</Badge>
@@ -37,7 +37,7 @@ export default function HomePage() {
             </Button>
           </div>
         </div>
-        <div className="drop-shadow-accent shadow-accent border-card relative z-31 order-2 flex h-full min-h-96 w-full place-content-center place-items-center rounded-2xl bg-[0] p-1 shadow drop-shadow-sm">
+        <div className="drop-shadow-accent shadow-accent border-card relative z-31 order-2 flex h-full min-h-96 w-full place-content-center place-items-center rounded-2xl bg-[0] p-1 shadow drop-shadow-sm sm:min-w-96">
           <div className="bg-popover/99 flex h-max max-h-full w-full flex-col gap-5 rounded-2xl sm:h-96">
             <DataCard />
           </div>
@@ -88,7 +88,7 @@ export default function HomePage() {
           </Button>
         </div>
       </section>
-      <section id="aboutMe" className="flex h-full min-h-max w-full flex-col items-start gap-15 md:flex-row md:gap-20">
+      <section id="aboutMe" className="flex h-full min-h-max w-full flex-col items-start gap-15 md:gap-20 lg:flex-row">
         <div className="flex h-max w-full flex-col items-start gap-5">
           <TooltipProvider>
             <Tooltip>
@@ -151,7 +151,7 @@ export default function HomePage() {
       </section>
       <section
         id="contactMe"
-        className="flex h-full min-h-max w-full flex-col items-start gap-15 md:flex-row md:gap-20"
+        className="flex h-full min-h-max w-full flex-col items-start gap-15 md:gap-20 lg:flex-row"
       >
         <div className="flex w-full flex-col gap-10">
           <div className="flex w-full flex-col gap-5">

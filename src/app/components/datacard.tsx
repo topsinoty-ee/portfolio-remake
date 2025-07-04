@@ -5,6 +5,7 @@ import { Button } from "~/components/ui/button";
 import { NowPlaying } from "./nowPlaying";
 import { toast } from "sonner";
 import React from "react";
+import Link from "next/link";
 
 const data = {
   currentAffairs: ["Ricing my PC", "Playing w/ SvelteKit & Java"],
@@ -47,15 +48,33 @@ export const DataCard = () => {
             <div key={color} className={`size-3 rounded-full bg-${color}`} />
           ))}
         </div>
-        <Button
-          variant="ghost"
-          onClick={copyProfileToClipboard}
-          className={cn("hover:bg-muted/20 rounded-none rounded-tr-2xl px-4 text-xs transition-all duration-500", {
-            "bg-muted/20 cursor-not-allowed": copiedToClipboard,
-          })}
-        >
-          {!copiedToClipboard ? "📋 Copy My Details" : "✔️ Copied!"}
-        </Button>
+        <div className="[&_span]:hidden [&_span]:lg:inline">
+          <Button asChild title="My CV" variant="ghost" className="rounded-none px-4 text-xs">
+            <Link href="/promise_temitope.pdf" target="_blank" rel="noopener noreferrer">
+              💼 <span>My CV</span>
+            </Link>
+          </Button>
+          <Button
+            variant="ghost"
+            onClick={copyProfileToClipboard}
+            className={cn(
+              "hover:bg-muted/80 dark:hover:text-foreground hover:text-muted-foreground rounded-none rounded-tr-2xl px-4 text-xs transition-all duration-500",
+              {
+                "bg-muted/20 cursor-not-allowed": copiedToClipboard,
+              },
+            )}
+          >
+            {!copiedToClipboard ? (
+              <>
+                📋<span> Copy My Details</span>
+              </>
+            ) : (
+              <>
+                ✔️ <span>Copied!</span>
+              </>
+            )}
+          </Button>
+        </div>
       </div>
 
       <div className="shadow-card flex grow flex-col gap-2 text-sm shadow-sm transition-transform">

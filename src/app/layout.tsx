@@ -112,7 +112,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="en" className={`${jets.variable} ${ubuntu.variable}`}>
       <body className="flex min-h-screen flex-col">
         <Navbar />
-        <section className="flex-1 p-10 md:p-20">{children}</section>
+        <section className="container mx-auto flex-1 p-10 md:p-20">{children}</section>
         <Footer />
         <script
           type="application/ld+json"
