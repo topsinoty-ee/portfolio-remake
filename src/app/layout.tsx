@@ -109,7 +109,7 @@ const jets = JetBrains_Mono({
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`dark:dark ${jets.variable} ${ubuntu.variable}`}>
+    <html lang="en" className={`${jets.variable} ${ubuntu.variable}`}>
       <body className="flex min-h-screen flex-col">
         <Navbar />
         <section className="flex-1 p-10 md:p-20">{children}</section>
