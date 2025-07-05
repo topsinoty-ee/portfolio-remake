@@ -12,27 +12,14 @@ const openInNewTab = (url: string) => {
 };
 
 export const ProjectCard: FC<ProjectPublicDetails> = memo(
-  ({
-    title,
-    description,
-    link,
-    repo,
-    for: forWho,
-    skillsRequired,
-    id,
-    isFeatured,
-    collaborators,
-    updatedAt,
-  }) => {
-    const formattedDate = updatedAt
-      ? format(new Date(updatedAt), "MMM dd, yyyy")
-      : "-- / --";
+  ({ title, description, link, repo, for: forWho, skillsRequired, id, isFeatured, collaborators, updatedAt }) => {
+    const formattedDate = updatedAt ? format(new Date(updatedAt), "MMM dd, yyyy") : "-- / --";
 
     return (
       <div className="group relative mb-6 break-inside-avoid">
-        <div className="from-border/50 to-border/50 absolute -inset-0.5 rounded-xl bg-gradient-to-r opacity-0 blur transition-all duration-500 group-hover:opacity-100" />
+        <div className="from-border/70 to-border/70 absolute -inset-0.5 rounded-xl bg-gradient-to-r opacity-0 blur transition-all duration-500 group-hover:opacity-100" />
 
-        <div className="bg-card border-border hover:border-border/80 relative overflow-hidden rounded-xl border shadow-sm backdrop-blur-sm transition-all duration-300 hover:shadow-md">
+        <div className="bg-card border-border hover:border-border relative overflow-hidden rounded-xl border shadow-sm backdrop-blur-sm transition-all duration-300 hover:shadow-md">
           {isFeatured && (
             <div className="absolute top-4 right-4 z-10">
               <div className="bg-muted text-muted-foreground flex items-center gap-1 rounded-full px-2 py-1 text-xs font-medium">
@@ -42,17 +29,12 @@ export const ProjectCard: FC<ProjectPublicDetails> = memo(
             </div>
           )}
 
-          <Link
-            href={`/projects/${id}`}
-            className="hover:bg-secondary/5 block p-6 transition-all duration-300"
-          >
+          <Link href={`/projects/${id}`} className="hover:bg-secondary/5 block p-6 transition-all duration-300">
             <div className="mb-4">
               <h2 className="text-foreground mb-2 line-clamp-2 text-xl font-bold transition-colors duration-300">
                 {title}
               </h2>
-              <p className="text-muted-foreground line-clamp-3 text-sm leading-relaxed">
-                {description}
-              </p>
+              <p className="text-muted-foreground line-clamp-3 text-sm leading-relaxed">{description}</p>
             </div>
 
             {skillsRequired && skillsRequired.length > 0 && (
@@ -75,7 +57,7 @@ export const ProjectCard: FC<ProjectPublicDetails> = memo(
               </div>
             )}
 
-            <Separator className="my-4 opacity-50" />
+            <Separator className="my-4" />
 
             <div className="flex items-center justify-between gap-4">
               <div className="text-muted-foreground flex items-center gap-4 text-xs">
@@ -87,7 +69,6 @@ export const ProjectCard: FC<ProjectPublicDetails> = memo(
                         {forWho}
                         {collaborators.length > 0 && (
                           <>
-                            {" "}
                             ({collaborators.length} collaborator
                             {collaborators.length === 1 ? "" : "s"})
                           </>
@@ -105,9 +86,7 @@ export const ProjectCard: FC<ProjectPublicDetails> = memo(
                   ) : (
                     <>
                       <User className="size-3 shrink-0" />
-                      <span className="ml-1 truncate overflow-hidden text-ellipsis">
-                        Personal
-                      </span>
+                      <span className="ml-1 truncate overflow-hidden text-ellipsis">Personal</span>
                     </>
                   )}
                 </div>
