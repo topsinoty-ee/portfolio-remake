@@ -5,7 +5,8 @@ import { JetBrains_Mono, Ubuntu_Sans } from "next/font/google";
 import { Navbar } from "~/components/layout/navbar";
 import { Footer } from "~/components/layout/footer";
 import { env } from "~/env";
-import { type ReactNode } from "react"
+import { type ReactNode } from "react";
+import { WipBanner } from "~/components/layout/isInDev";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -112,6 +113,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
   return (
     <html lang="en" className={`${jets.variable} ${ubuntu.variable}`}>
       <body className="flex min-h-screen flex-col">
+        <WipBanner />
         <Navbar />
         <section className="container mx-auto flex-1 p-10 md:p-20">{children}</section>
         <Footer />
