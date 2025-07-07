@@ -1,6 +1,8 @@
 import { Project, type ProjectType } from "~/db/models/project";
 import { type NextRequest, NextResponse } from "next/server";
 import { clientPromise } from "~/db";
+import { mapSlugToId } from "~/db/utils";
+import type { ObjectId } from "mongoose";
 
 export async function GET(req: NextRequest) {
   const slug = req.nextUrl.pathname.split("/").pop();
@@ -11,15 +13,26 @@ export async function GET(req: NextRequest) {
     });
   }
 
+  console.log("Fetching project with slug:", slug);
+
   await clientPromise;
   await Project.init();
 
-  const project = await Project.findOne<{ project: ProjectType }>(
-    { title: "test project" },
+  const projectId = await Project.findOne<{ _id: ObjectId }>(
+    { slug },
     {
       collation: { locale: "en", strength: 2 },
     },
   );
+
+  if (!projectId) {
+    return NextResponse.json({
+      message: "Project does not exist",
+      status: "error",
+    });
+  }
+
+  const project = await Project.findById(projectId._id).lean<ProjectType>();
 
   if (!project) {
     return NextResponse.json({
@@ -29,7 +42,7 @@ export async function GET(req: NextRequest) {
   }
 
   return NextResponse.json({
-    project,
+    project: mapSlugToId(project),
     message: "Projects fetched successfully",
     status: "success",
   });

@@ -1,5 +1,5 @@
 import { ProjectCard } from "./components/card";
-import { fetchProjects } from "./fetchProjects";
+import { fetchProjects } from "./fetch";
 
 export default async function ProjectsPage() {
   const projects = await fetchProjects();
