@@ -9,7 +9,7 @@ if (!env.MONGODB_URI || typeof env.MONGODB_URI !== "string") {
   throw new Error("Missing or invalid MONGODB_URI in .env.local");
 }
 
-const uri = env.MONGODB_URI as string;
+const uri = env.MONGODB_URI;
 
 let clientPromise: Promise<typeof mongoose>;
 
