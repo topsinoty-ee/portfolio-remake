@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { fetchProject } from "../fetch";
+import { fetchProjectBySlug } from "~/app/api/projects/fetch";
 import { Calendar, ExternalLink, Users, Tag, GitBranch, Building2, ArrowLeft } from "lucide-react";
 import { Button } from "~/components/ui/button";
 import { Badge } from "~/components/ui/badge";
@@ -7,7 +7,7 @@ import { Separator } from "~/components/ui/separator";
 
 export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
   const slug = await params.then((p) => p.slug);
-  const project = await fetchProject(slug);
+  const project = await fetchProjectBySlug(slug);
 
   const formatDate = (date?: string | Date) => {
     if (!date) return "N/A";
