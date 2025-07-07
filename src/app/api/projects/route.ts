@@ -1,5 +1,5 @@
 import { clientPromise } from "~/db";
-import { NextResponse } from "next/server";
+import { type NextRequest, NextResponse } from "next/server";
 import { Project, type ProjectType } from "~/db/models/project";
 import { mapSlugToId } from "~/db/utils";
 
@@ -16,7 +16,7 @@ export async function GET() {
   });
 }
 
-export async function POST(req: NextResponse) {
+export async function POST(req: NextRequest) {
   const project = (await req.json()) as unknown as ProjectType;
   await clientPromise;
   await Project.init();
