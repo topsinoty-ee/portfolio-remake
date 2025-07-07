@@ -1,16 +1,11 @@
-import { clientPromise } from "~/db";
 import { type NextRequest, NextResponse } from "next/server";
-import { Project, type ProjectType } from "~/db/models/project";
-import { mapSlugToId } from "~/db/utils";
+import { type ProjectType } from "~/db/models/project";
+import { createProject, fetchProjects } from "./fetch";
 
 export async function GET() {
-  await clientPromise;
-  await Project.init();
-
-  const projects: ProjectType[] = await Project.find({}).lean();
-  const mappedProjects = projects.map((project) => mapSlugToId(project));
+  const projects = await fetchProjects();
   return NextResponse.json({
-    projects: mappedProjects,
+    projects,
     message: "Projects fetched successfully",
     status: "success",
   });
@@ -18,10 +13,9 @@ export async function GET() {
 
 export async function POST(req: NextRequest) {
   const project = (await req.json()) as unknown as ProjectType;
-  await clientPromise;
-  await Project.init();
 
-  const result = await Project.insertOne(project);
+  const result = await createProject(project);
+
   return NextResponse.json({
     project: JSON.stringify(result),
     message: "Project created successfully",

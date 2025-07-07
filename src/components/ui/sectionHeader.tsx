@@ -1,4 +1,5 @@
 import { cn } from "~/lib/utils";
+import React from "react";
 
 interface SectionHeaderProps extends React.ComponentProps<"h1"> {
   type?: "primary" | "secondary" | "info";

@@ -66,20 +66,3 @@ export type ProjectType = InferSchemaType<typeof ProjectSchema>;
 export type ProjectModel = Model<ProjectType>;
 
 export const Project: ProjectModel = models.Project ?? model("Project", ProjectSchema);
-
-const exampleProject: ProjectType = {
-  title: "Example Project",
-  slug: "example-project",
-  content: "This is an example project.",
-  description: "An example project for demonstration purposes.",
-  updatedAt: new Date(),
-  link: "https://example.com",
-  repo: "",
-  for: "Everyone",
-  skillsRequired: ["JavaScript", "React"],
-  collaborators: ["Alice", "Bob"],
-  comments: [],
-  isArchived: false,
-  isFeatured: false,
-  // lastUpdatedBy: "Alice",
-};

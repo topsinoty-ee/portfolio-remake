@@ -1,17 +1,11 @@
 import { NextResponse } from "next/server";
-import { clientPromise } from "~/db";
-import { Project } from "~/db/models/project";
-import { mapSlugToId } from "~/db/utils";
+import { fetchFeaturedProjects } from "../fetch";
 
 export async function GET() {
-  await clientPromise;
-  await Project.init();
-
-  const projects = await Project.find({ isFeatured: true }).lean();
-  const mappedProjects = projects.map((project) => mapSlugToId(project));
+  const projects = await fetchFeaturedProjects();
 
   return NextResponse.json({
-    projects: mappedProjects,
+    projects,
     message: "Featured projects fetched successfully",
     status: "success",
   });

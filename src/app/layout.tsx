@@ -5,6 +5,7 @@ import { JetBrains_Mono, Ubuntu_Sans } from "next/font/google";
 import { Navbar } from "~/components/layout/navbar";
 import { Footer } from "~/components/layout/footer";
 import { env } from "~/env";
+import { type ReactNode } from "react"
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -107,7 +108,7 @@ const jets = JetBrains_Mono({
   variable: "--font-jets",
 });
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
     <html lang="en" className={`${jets.variable} ${ubuntu.variable}`}>
       <body className="flex min-h-screen flex-col">

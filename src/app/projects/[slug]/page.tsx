@@ -4,8 +4,6 @@ import { Calendar, ExternalLink, Users, Tag, GitBranch, Building2, ArrowLeft } f
 import { Button } from "~/components/ui/button";
 import { Badge } from "~/components/ui/badge";
 import { Separator } from "~/components/ui/separator";
-import { Card, CardContent, CardHeader } from "~/components/ui/card";
-import { cn } from "~/lib/utils";
 
 export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
   const slug = await params.then((p) => p.slug);

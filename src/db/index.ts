@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 import { env } from "~/env";
 
 declare global {
+  // noinspection ES6ConvertVarToLetConst
   var _mongooseConnectionPromise: Promise<typeof mongoose> | undefined;
 }
 

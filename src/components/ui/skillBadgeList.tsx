@@ -1,4 +1,4 @@
-import type { ComponentProps } from "react";
+import React, { type ComponentProps } from "react";
 import { Badge } from "./badge";
 
 export type TypeofBadge = ComponentProps<typeof Badge>;
