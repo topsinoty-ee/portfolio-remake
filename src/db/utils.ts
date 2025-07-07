@@ -1,0 +1,15 @@
+export function mapSlugToId<T extends { slug: string }>(doc: T): Omit<T, "_id" | "slug"> & { id: string } {
+  if (typeof doc === "object" && doc !== null && typeof doc.slug === "string" && "_id" in doc) {
+    const id = doc.slug.replace(/-/g, "_");
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { _id, slug, ...rest } = doc;
+
+    return {
+      ...rest,
+      id,
+    };
+  }
+
+  throw new Error("Invalid document: must contain slug and _id");
+}

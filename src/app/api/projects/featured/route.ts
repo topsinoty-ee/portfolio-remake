@@ -1,9 +1,17 @@
 import { NextResponse } from "next/server";
-import { projects } from "../mockProjects";
+import { clientPromise } from "~/db";
+import { Project } from "~/db/models/project";
+import { mapSlugToId } from "~/db/utils";
 
-export function GET() {
+export async function GET() {
+  await clientPromise;
+  await Project.init();
+
+  const projects = await Project.find({ isFeatured: true }).lean();
+  const mappedProjects = projects.map((project) => mapSlugToId(project));
+
   return NextResponse.json({
-    projects: projects.filter((project) => project.isFeatured),
+    projects: mappedProjects,
     message: "Featured projects fetched successfully",
     status: "success",
   });

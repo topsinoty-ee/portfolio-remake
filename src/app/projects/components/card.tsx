@@ -19,8 +19,10 @@ export const ProjectCard: FC<ProjectPublicDetails> = memo(
       <div className="group relative break-inside-avoid">
         <div className="from-border/70 to-border/70 absolute -inset-0.5 rounded-xl bg-gradient-to-r opacity-0 blur transition-all duration-500 group-hover:opacity-100" />
 
-        <div className="bg-card border-border hover:border-border overflow-hidden rounded-xl border shadow-sm backdrop-blur-sm transition-all duration-300 hover:shadow-md">
-          <div className="bg-primary relative flex items-center justify-end">
+        <div className="bg-card border-border overflow-hidden rounded-xl border shadow-sm backdrop-blur-sm transition-all duration-300 hover:shadow-md">
+          <div
+            className={`bg-primary flex h-0 items-center justify-end overflow-hidden px-4 opacity-0 transition-all duration-500 ease-in-out group-hover:h-12 group-hover:opacity-100`}
+          >
             {link && (
               <Button
                 onClick={(e) => {
@@ -29,10 +31,10 @@ export const ProjectCard: FC<ProjectPublicDetails> = memo(
                   openInNewTab(link);
                 }}
                 variant="ghost"
-                className="opacity-60 transition-all duration-300 group-hover:opacity-100 hover:bg-transparent"
+                className="opacity-60 transition-opacity duration-300 ease-in-out group-hover:opacity-100 hover:bg-transparent"
                 title="View live demo"
               >
-                <ExternalLink className="size-4 font-extrabold" />
+                <ExternalLink className="size-4" />
               </Button>
             )}
             {repo && (
@@ -43,28 +45,25 @@ export const ProjectCard: FC<ProjectPublicDetails> = memo(
                   openInNewTab(repo);
                 }}
                 variant="ghost"
-                className="opacity-60 transition-all duration-300 group-hover:opacity-100 hover:bg-transparent"
+                className="opacity-60 transition-opacity duration-300 ease-in-out group-hover:opacity-100 hover:bg-transparent"
                 title="View source code"
               >
                 <SiGithub className="size-4" />
               </Button>
             )}
-            {isFeatured && (
-              <div className="">
-                <Button
-                  variant={"ghost"}
-                  className="opacity-60 transition-all duration-300 group-hover:opacity-100 hover:bg-transparent"
-                >
-                  <Star className="size-4 fill-current" />
-                </Button>
-              </div>
-            )}
           </div>
 
           <Link href={`/projects/${id}`} className="hover:bg-secondary/5 block p-6 transition-all duration-300">
             <div className="mb-4">
-              <h2 className="text-foreground mb-2 line-clamp-2 text-xl font-bold transition-colors duration-300">
+              <h2 className="text-foreground mb-2 line-clamp-2 inline-flex items-baseline text-xl font-bold transition-colors duration-300">
                 {title}
+                {isFeatured && (
+                  <div>
+                    <Button variant={"ghost"} className="size-4 opacity-60 transition-all duration-300">
+                      <Star className="size-4 fill-current" />
+                    </Button>
+                  </div>
+                )}
               </h2>
               <p className="text-muted-foreground line-clamp-3 text-sm leading-relaxed">{description}</p>
             </div>

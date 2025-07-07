@@ -8,7 +8,8 @@ export const env = createEnv({
    */
   server: {
     NODE_ENV: z.enum(["development", "test", "production"]),
-    WEBSITE: z.string().url()
+    WEBSITE: z.string().url(),
+    MONGODB_URI: z.string().url().optional(),
   },
 
   /**
@@ -26,7 +27,8 @@ export const env = createEnv({
    */
   runtimeEnv: {
     NODE_ENV: process.env.NODE_ENV,
-    WEBSITE: process.env.WEBSITE
+    WEBSITE: process.env.WEBSITE,
+    MONGODB_URI: process.env.MONGODB_URI,
     // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
   },
   /**
