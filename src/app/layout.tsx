@@ -66,6 +66,12 @@ export const metadata: Metadata = {
     siteName: "Promise Temitope",
   },
   icons: [{ rel: "icon", url: "/favicon.ico" }],
+  alternates: {
+    canonical: String(env.WEBSITE),
+    languages: {
+      "en-US": "/",
+    },
+  },
   keywords: [
     "topsinoty",
     "promise",
