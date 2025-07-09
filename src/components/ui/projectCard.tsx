@@ -24,7 +24,6 @@ export const ProjectCard: FC<ProjectPublicDetails> = memo(
             <div className="absolute top-4 right-4 z-10">
               <div className="bg-muted text-muted-foreground flex items-center gap-1 rounded-full px-2 py-1 text-xs font-medium">
                 <Star className="size-3 fill-current" />
-                Featured
               </div>
             </div>
           )}
