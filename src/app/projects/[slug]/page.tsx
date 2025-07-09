@@ -37,7 +37,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                   </Link>
                 </Button>
                 {project.isFeatured && (
-                  <div className="ml-4">
+                  <div className="">
                     <Badge variant="secondary">featured</Badge>
                   </div>
                 )}
@@ -52,14 +52,14 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
             {project.skillsRequired && project.skillsRequired.length > 0 && (
               <div className="mb-4 lg:hidden">
                 <div className="flex flex-wrap gap-2">
-                  {project.skillsRequired.slice(0, 3).map((skill, index) => (
+                  {project.skillsRequired.slice(0, 6).map((skill, index) => (
                     <Badge key={index} variant="outline" className="text-xs">
                       {skill}
                     </Badge>
                   ))}
                   {project.skillsRequired.length > 3 && (
                     <Badge variant="outline" className="text-xs">
-                      +{project.skillsRequired.length - 3} more
+                      +{project.skillsRequired.length - 6} more
                     </Badge>
                   )}
                 </div>
@@ -138,9 +138,10 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
               </div>
               {/* Mobile collaborators preview */}
               {project.collaborators && project.collaborators.length > 0 && (
-                <div className="flex items-center gap-2 lg:hidden">
+                <div className="bg-card flex w-full items-center gap-2 rounded-md p-4 lg:hidden">
+                  <span className="text-muted-foreground text-sm font-bold">Collaborators:</span>
                   <div className="flex -space-x-2">
-                    {project.collaborators.slice(0, 3).map((collaborator, index) => (
+                    {project.collaborators.slice(0, 4).map((collaborator, index) => (
                       <div
                         key={index}
                         className="from-primary/40 to-accent/60 text-foreground ring-background flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br text-sm font-medium ring-2"
@@ -149,8 +150,8 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                       </div>
                     ))}
                   </div>
-                  {project.collaborators.length > 3 && (
-                    <span className="text-muted-foreground text-sm">+{project.collaborators.length - 3}</span>
+                  {project.collaborators.length > 4 && (
+                    <span className="text-muted-foreground text-sm">+{project.collaborators.length - 4}</span>
                   )}
                 </div>
               )}
