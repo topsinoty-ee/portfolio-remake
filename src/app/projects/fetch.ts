@@ -4,7 +4,6 @@ import type { ProjectPrivateDetails, ProjectPublicDetails } from "~/types/projec
 
 export const fetchProjects = async () => {
   try {
-    console.log("Fetching projects from API:", env.WEBSITE);
     const res = await fetch(`${env.WEBSITE}/api/projects`, {
       next: { revalidate: 60 },
     });
@@ -22,7 +21,6 @@ export const fetchProjects = async () => {
 
 export const fetchProject = async (slug: string) => {
   try {
-    console.log("Fetching project from API:", env.WEBSITE);
     const res = await fetch(`${env.WEBSITE}/api/projects/${slug}`, {
       next: { revalidate: 60 },
     });
