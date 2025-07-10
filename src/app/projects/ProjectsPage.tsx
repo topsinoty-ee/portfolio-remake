@@ -1,4 +1,4 @@
-import { ProjectCard } from "./components/card";
+import { ProjectCard } from "~/components/ui/projectCard";
 import { fetchProjects } from "./fetch";
 
 export default async function ProjectsPage() {
