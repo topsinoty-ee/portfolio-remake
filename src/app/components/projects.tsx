@@ -45,7 +45,7 @@ export const ProjectsList = () => {
   return (
     <div className="grid h-full w-full grid-cols-1 gap-10 lg:grid-cols-2">
       {projects.map((project) => {
-        return <ProjectCard {...project} key={project.id} />;
+        return <ProjectCard tagCount={4} {...project} key={project.id} />;
       })}
     </div>
   );
