@@ -1,4 +1,4 @@
-import { Building2, ExternalLink, Star, User, Users } from "lucide-react";
+import { Building2, ExternalLink, User, Users } from "lucide-react";
 import React, { memo, type FC } from "react";
 import { Separator } from "./separator";
 import { Button } from "./button";
