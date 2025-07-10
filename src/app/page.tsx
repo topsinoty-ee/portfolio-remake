@@ -7,10 +7,10 @@ import { Suspense } from "react";
 import { Skeleton } from "~/components/ui/skeleton";
 import { SiGithub } from "@icons-pack/react-simple-icons";
 import { ExternalLink, Luggage } from "lucide-react";
-import { ProjectsList } from "./components/projects";
+import { ProjectsList } from "./_components/projects";
 import { SkillBadgeList } from "~/components/ui/skillBadgeList";
-import { DataCard } from "./components/datacard";
-import { ContactForm } from "./components/contactForm";
+import { DataCard } from "./_components/datacard";
+import { ContactForm } from "./_components/contactForm";
 
 export default function HomePage() {
   return (

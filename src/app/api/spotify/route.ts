@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import type { Track } from "~/app/components/nowPlaying";
+import type { Track } from "~/app/_components/nowPlaying";
 
 export interface RecentTrackResponse {
   recenttracks: { track: Track[]; "@attr": { user: string } };
