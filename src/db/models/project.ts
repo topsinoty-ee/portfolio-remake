@@ -66,3 +66,23 @@ export type ProjectType = InferSchemaType<typeof ProjectSchema>;
 export type ProjectModel = Model<ProjectType>;
 
 export const Project: ProjectModel = models.Project ?? model("Project", ProjectSchema);
+
+export const isValidProject = (project: unknown): project is ProjectType => {
+  if (
+    project &&
+    typeof project === "object" &&
+    "slug" in project &&
+    "title" in project &&
+    "description" in project &&
+    "content" in project &&
+    typeof project.slug === "string" &&
+    typeof project.title === "string" &&
+    typeof project.description === "string" &&
+    typeof project.content === "string" &&
+    "skillsRequired" in project &&
+    Array.isArray(project.skillsRequired) &&
+    project.skillsRequired.every((skill: unknown) => typeof skill === "string")
+  )
+    return true;
+  return false;
+};

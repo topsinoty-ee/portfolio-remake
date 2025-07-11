@@ -1,52 +1,23 @@
-"use client";
-
-// import { TriangleAlert } from "lucide-react";
-// import { Alert, AlertDescription } from "../ui/alert";
-// import { TriangleAlert } from "lucide-react";
-import { useEffect, useState } from "react";
-// import { Alert, AlertDescription } from "~/components/ui/alert";
 import { ProjectCard } from "~/components/ui/projectCard";
-import type { ProjectPublicDetails } from "~/types/project";
+import { isValidProject } from "~/db/models/project";
+import { fetchProjects } from "../api/projects/fetch";
 
-export const ProjectsList = () => {
-  const [projects, setProjects] = useState<ProjectPublicDetails[]>([]);
-  const [, setError] = useState<string | null>(null);
-  const [, setIsLoading] = useState(true);
+export const revalidate = 10;
 
-  useEffect(() => {
-    const fetchProjects = async () => {
-      try {
-        const res = await fetch("/api/projects/featured");
-        if (!res.ok) {
-          throw new Error("Failed to fetch projects");
-        }
-        setProjects(
-          (await res.json().then((res: { projects: ProjectPublicDetails }) => res.projects)) as ProjectPublicDetails[],
-        );
-      } catch (err) {
-        setError(err instanceof Error ? err.message : "An error occurred");
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    const intervalId = setInterval(() => {
-      void fetchProjects();
-    }, 10000);
+export async function ProjectsList() {
+  try {
+    const projects = await fetchProjects();
+    const featuredProjects = projects.filter((project) => isValidProject(project));
 
-    void fetchProjects();
-
-    return () => clearInterval(intervalId);
-  }, []);
-
-  if (!projects?.length) {
-    return <div className="text-muted-foreground">No projects found</div>;
+    return (
+      <div className="grid h-full w-full grid-cols-1 gap-10 lg:grid-cols-2">
+        {featuredProjects.map((project) => (
+          <ProjectCard tagCount={4} {...project} key={project.id} />
+        ))}
+      </div>
+    );
+  } catch (error) {
+    console.error("Failed to fetch projects:", error);
+    return <div className="text-destructive">Failed to load projects.</div>;
   }
-
-  return (
-    <div className="grid h-full w-full grid-cols-1 gap-10 lg:grid-cols-2">
-      {projects.map((project) => {
-        return <ProjectCard tagCount={4} {...project} key={project.id} />;
-      })}
-    </div>
-  );
-};
+}

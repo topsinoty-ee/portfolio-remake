@@ -1,5 +1,5 @@
 import { ProjectCard } from "~/components/ui/projectCard";
-import { fetchProjects } from "./fetch";
+import { fetchProjects } from "~/app/api/projects/fetch";
 
 export default async function ProjectsPage() {
   const projects = await fetchProjects();
