@@ -66,3 +66,24 @@ export async function fetchProjectBySlug(slug: string) {
     throw new Error("Failed to fetch project by slug: " + (error instanceof Error ? error.message : String(error)));
   }
 }
+
+export async function updateProjectBySlug(slug: string, update: Partial<ProjectType>) {
+  try {
+    await clientPromise;
+    await Project.init();
+
+    const projectId = await Project.findOne<{ _id: Types.ObjectId }>(
+      { slug },
+      { collation: { locale: "en", strength: 2 } },
+    );
+
+    if (!projectId) {
+      throw new Error(`Project with slug "${slug}" does not exist`);
+    }
+
+    const result = await Project.findByIdAndUpdate(projectId._id, update).lean<ProjectType>();
+    return result;
+  } catch (error) {
+    throw new Error("Failed to fetch project by slug: " + (error instanceof Error ? error.message : String(error)));
+  }
+}

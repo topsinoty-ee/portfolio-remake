@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { fetchProjectBySlug } from "~/app/api/projects/fetch";
-import { Calendar, ExternalLink, Users, Tag, GitBranch, Building2, ArrowLeft } from "lucide-react";
+import { Calendar, ExternalLink, Users, Tag, GitBranch, Building2, ArrowLeft, Edit2 } from "lucide-react";
 import { Button } from "~/components/ui/button";
 import { Badge } from "~/components/ui/badge";
 import { Separator } from "~/components/ui/separator";
@@ -170,6 +170,17 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
             <Link href="/projects" className="inline-flex items-center gap-2">
               <ArrowLeft className="size-4" />
               Back to Projects
+            </Link>
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            asChild
+            className="bg-card w-full justify-start rounded-lg border p-4 shadow-sm"
+          >
+            <Link href={`/projects/${slug}/edit`} className="inline-flex items-center gap-2">
+              <Edit2 className="size-4" />
+              Edit Project
             </Link>
           </Button>
 
