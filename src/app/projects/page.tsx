@@ -16,3 +16,5 @@ export default async function ProjectsPage() {
     </section>
   );
 }
+
+export const revalidate = 30;
