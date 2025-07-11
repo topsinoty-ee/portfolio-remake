@@ -1,3 +1,4 @@
+"use client";
 import { Building2, ExternalLink, User, Users } from "lucide-react";
 import React, { memo, type FC } from "react";
 import { Separator } from "./separator";

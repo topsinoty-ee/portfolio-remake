@@ -60,17 +60,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          <Suspense
-            fallback={
-              <div className="grid h-full w-full grid-cols-1 gap-10 transition-all duration-300 md:grid-cols-2">
-                {[...Array<number>(2)].map((_, i) => (
-                  <Skeleton key={i} className="bg-muted h-[200px] w-full rounded-lg transition-all" />
-                ))}
-              </div>
-            }
-          >
-            <ProjectsList />
-          </Suspense>
+          <ProjectsList />
         </div>
 
         <div className="flex w-full items-center justify-start gap-4">

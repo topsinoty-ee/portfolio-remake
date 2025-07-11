@@ -1,5 +1,4 @@
 import { ProjectCard } from "~/components/ui/projectCard";
-import { isValidProject } from "~/db/models/project";
 import { fetchProjects } from "../api/projects/fetch";
 
 export const revalidate = 10;
@@ -7,7 +6,7 @@ export const revalidate = 10;
 export async function ProjectsList() {
   try {
     const projects = await fetchProjects();
-    const featuredProjects = projects.filter((project) => isValidProject(project));
+    const featuredProjects = projects.filter((project) => project.isFeatured);
 
     return (
       <div className="grid h-full w-full grid-cols-1 gap-10 lg:grid-cols-2">
