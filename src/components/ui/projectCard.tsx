@@ -121,7 +121,7 @@ export const ProjectCard: FC<ProjectPublicDetails & { tagCount?: number; showFea
                       openInNewTab(link);
                     }}
                     variant="ghost"
-                    className="hover:bg-muted text-foreground opacity-50 transition-all duration-300 group-hover:opacity-100"
+                    className="hover:bg-muted hover:text-foreground opacity-50 transition-all duration-300 group-hover:opacity-100"
                     title="View live demo"
                   >
                     <ExternalLink className="size-4" />
