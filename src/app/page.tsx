@@ -3,8 +3,6 @@ import { Button } from "~/components/ui/button";
 import { Badge } from "~/components/ui/badge";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "~/components/ui/tooltip";
 import { SectionHeader } from "~/components/ui/sectionHeader";
-import { Suspense } from "react";
-import { Skeleton } from "~/components/ui/skeleton";
 import { SiGithub } from "@icons-pack/react-simple-icons";
 import { ExternalLink, Luggage } from "lucide-react";
 import { ProjectsList } from "./_components/projects";
