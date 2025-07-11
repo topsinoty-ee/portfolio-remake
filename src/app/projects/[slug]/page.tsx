@@ -258,3 +258,5 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
     </div>
   );
 }
+
+export const revalidate = 60;
