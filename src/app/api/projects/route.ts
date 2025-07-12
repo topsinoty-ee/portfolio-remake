@@ -18,6 +18,7 @@ export async function POST(req: NextRequest) {
             content: "Detailed content of the project goes here.",
             skillsRequired: ["JavaScript", "React", "Node.js"],
           },
+          receivedMessage: body,
           status: "error",
         },
         { status: 400 },

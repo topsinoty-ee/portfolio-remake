@@ -78,10 +78,7 @@ export const isValidProject = (project: unknown): project is ProjectType => {
     typeof project.slug === "string" &&
     typeof project.title === "string" &&
     typeof project.description === "string" &&
-    typeof project.content === "string" &&
-    "skillsRequired" in project &&
-    Array.isArray(project.skillsRequired) &&
-    project.skillsRequired.every((skill: unknown) => typeof skill === "string")
+    typeof project.content === "string"
   )
     return true;
   return false;
