@@ -41,10 +41,7 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-      <section
-        id="projects"
-        className="flex h-full min-h-[calc(100vh-10rem)] w-full flex-col items-center gap-15 md:gap-20"
-      >
+      <section id="projects" className="flex h-full w-full flex-col items-center gap-15 md:gap-20">
         <div className="flex w-full flex-col gap-10">
           <div className="flex flex-col items-center gap-2.5 text-center">
             <Badge className="select-none" variant={"default"}>
