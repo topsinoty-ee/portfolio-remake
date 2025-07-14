@@ -12,7 +12,10 @@ export const env = createEnv({
     MONGODB_URI: z.string().url().optional(),
     AUTH_SECRET: z.string(),
     AUTH_GITHUB_ID: z.string(),
-    AUTH_GITHUB_SECRET: z.string()
+    AUTH_GITHUB_SECRET: z.string(),
+    AUTH_GOOGLE_ID: z.string(),
+    AUTH_GOOGLE_SECRET: z.string(),
+    ADMIN_EMAIL: z.string().email(),
   },
 
   /**
@@ -34,7 +37,10 @@ export const env = createEnv({
     MONGODB_URI: process.env.MONGODB_URI,
     AUTH_GITHUB_ID: process.env.AUTH_GITHUB_ID,
     AUTH_GITHUB_SECRET: process.env.AUTH_GITHUB_SECRET,
-    AUTH_SECRET: process.env.AUTH_SECRET
+    AUTH_SECRET: process.env.AUTH_SECRET,
+    AUTH_GOOGLE_ID: process.env.AUTH_GOOGLE_CLIENT_ID,
+    AUTH_GOOGLE_SECRET: process.env.AUTH_GOOGLE_CLIENT_SECRET,
+    ADMIN_EMAIL: process.env.ADMIN_EMAIL,
     // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
   },
   /**

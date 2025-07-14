@@ -4,10 +4,13 @@ import { Calendar, ExternalLink, Users, Tag, GitBranch, Building2, ArrowLeft, Ed
 import { Button } from "~/components/ui/button";
 import { Badge } from "~/components/ui/badge";
 import { Separator } from "~/components/ui/separator";
+import { auth } from "~/auth";
+import { env } from "~/env";
 
 export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
   const slug = await params.then((p) => p.slug);
   const project = await fetchProjectBySlug(slug);
+  const session = await auth();
 
   const formatDate = (date?: string | Date) => {
     if (!date) return "N/A";
@@ -172,17 +175,19 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
               Back to Projects
             </Link>
           </Button>
-          <Button
-            variant="outline"
-            size="sm"
-            asChild
-            className="bg-card w-full justify-start rounded-lg border p-4 shadow-sm"
-          >
-            <Link href={`/projects/${slug}/edit`} className="inline-flex items-center gap-2">
-              <Edit2 className="size-4" />
-              Edit Project
-            </Link>
-          </Button>
+          {session?.user && session?.user.email === env.ADMIN_EMAIL && (
+            <Button
+              variant="outline"
+              size="sm"
+              asChild
+              className="bg-card w-full justify-start rounded-lg border p-4 shadow-sm"
+            >
+              <Link href={`/projects/${slug}/edit`} className="inline-flex items-center gap-2">
+                <Edit2 className="size-4" />
+                Edit Project
+              </Link>
+            </Button>
+          )}
 
           {/* Skills Required */}
           {project.skillsRequired && project.skillsRequired.length > 0 && (
