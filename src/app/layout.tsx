@@ -3,7 +3,6 @@ import "~/styles/globals.css";
 import { type Metadata } from "next";
 import { JetBrains_Mono, Ubuntu_Sans } from "next/font/google";
 import { Navbar } from "~/components/layout/navbar";
-import { Footer } from "~/components/layout/footer";
 import { env } from "~/env";
 import { type ReactNode } from "react";
 import { WipBanner } from "~/components/layout/isInDev";
@@ -121,8 +120,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
       <body className="flex min-h-screen flex-col">
         <WipBanner />
         <Navbar />
-        <section className="container mx-auto flex-1 p-10 md:p-20">{children}</section>
-        <Footer />
+        <section className="flex flex-1 flex-col">{children}</section>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
