@@ -7,7 +7,7 @@ import { loginWithGithub, loginWithGoogle } from "~/lib/auth/login";
 
 export default function LoginPage() {
   return (
-    <section className="flex h-screen w-full flex-col gap-6">
+    <section className="flex h-min w-full flex-col gap-6">
       <div className="flex flex-col gap-2">
         <SectionHeader>Are u real?</SectionHeader>
         <small>Get access to some gate-kept features by authenticating</small>
