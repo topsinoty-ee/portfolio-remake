@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { fetchProjectBySlug } from "~/app/api/projects/fetch";
+import { fetchProjectBySlug, fetchProjects } from "~/app/api/projects/fetch";
 import { Calendar, ExternalLink, Users, Tag, GitBranch, Building2, ArrowLeft, Edit2 } from "lucide-react";
 import { Button } from "~/components/ui/button";
 import { Badge } from "~/components/ui/badge";
@@ -265,3 +265,8 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 }
 
 export const revalidate = 60;
+
+export async function generateStaticParams() {
+  const projects = await fetchProjects();
+  return projects.map((slug) => slug);
+}
