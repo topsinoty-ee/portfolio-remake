@@ -3,12 +3,9 @@ import { Badge } from "../ui/badge";
 // import { Button } from "../ui/button";
 // import { Flashlight, FlashlightOff } from "lucide-react";
 import Link from "next/link";
-import { auth } from "~/auth";
-import { LogoutButton } from "~/lib/auth/components";
 // import { useFlashLightContext } from "../ui/flashlightContext";
 
-export const Navbar = async () => {
-  const session = await auth();
+export const Navbar = () => {
   //   const { toggle, enabled } = useFlashLightContext();
 
   // enum RouteTitle {
@@ -37,7 +34,6 @@ export const Navbar = async () => {
           <span className="text-primary font-medium">{"<"}</span>
           <span className="text-primary font-medium">{"/>"}</span>
         </Badge>
-        {session?.user && <LogoutButton />}
       </Link>
 
       <div className="flex items-center gap-5">

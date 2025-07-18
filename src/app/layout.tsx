@@ -6,6 +6,8 @@ import { Navbar } from "~/components/layout/navbar";
 import { env } from "~/env";
 import { type ReactNode } from "react";
 import { WipBanner } from "~/components/layout/isInDev";
+import { auth } from "~/auth";
+import { AuthWrapper } from "~/lib/auth/components";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -114,20 +116,23 @@ const jets = JetBrains_Mono({
   variable: "--font-jets",
 });
 
-export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
+export default async function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
+  const session = await auth();
   return (
     <html lang="en" className={`${jets.variable} ${ubuntu.variable}`}>
-      <body className="flex min-h-screen flex-col">
-        <WipBanner />
-        <Navbar />
-        <section className="flex flex-1 flex-col">{children}</section>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
-          }}
-        />
-      </body>
+      <AuthWrapper session={session}>
+        <body className="flex min-h-screen flex-col">
+          <WipBanner />
+          <Navbar />
+          <section className="flex flex-1 flex-col">{children}</section>
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
+            }}
+          />
+        </body>
+      </AuthWrapper>
     </html>
   );
 }
