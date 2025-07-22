@@ -1,3 +1,4 @@
 {
-  "conventionalCommits.scopes": ["eslint", "codebase"]
+  "conventionalCommits.scopes": ["eslint", "codebase"],
+  "typescript.tsdk": "node_modules/typescript/lib"
 }

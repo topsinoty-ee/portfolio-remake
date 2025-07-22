@@ -44,10 +44,6 @@ const ProjectSchema = new Schema({
     type: [String],
     default: [],
   },
-  comments: {
-    type: [String],
-    default: [],
-  },
   isArchived: {
     type: Boolean,
     default: false,
