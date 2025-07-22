@@ -12,7 +12,6 @@ export const projectSchema = z.object({
   for: z.string().optional(),
   skillsRequired: z.array(z.string()),
   collaborators: z.array(z.string()).default([]),
-  comments: z.array(z.string()).default([]),
   isArchived: z.boolean().default(false),
   isFeatured: z.boolean().default(false),
   // accessList: z.array(z.string()).optional(),
