@@ -16,7 +16,7 @@ export function WipBanner() {
       <AlertTitle>Work In Progress</AlertTitle>
       <AlertDescription>
         This app is still being built. Things may break, look weird, or change without warning.{" "}
-        <Link href={"my-thoughts"}>See my thoughts</Link>
+        <Link href={"/my-thoughts"}>See my thoughts</Link>
       </AlertDescription>
       <Button
         variant="ghost"
