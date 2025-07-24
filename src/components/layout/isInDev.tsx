@@ -11,12 +11,14 @@ export function WipBanner() {
   if (!visible) return null;
 
   return (
-    <Alert variant="destructive" className="relative rounded-none bg-yellow-400 text-amber-900">
+    <Alert variant="destructive" className="relative rounded-none bg-yellow-400">
       <AlertTriangle className="h-4 w-4" />
       <AlertTitle>Work In Progress</AlertTitle>
-      <AlertDescription>
+      <AlertDescription className="flex flex-col gap-2">
         This app is still being built. Things may break, look weird, or change without warning.{" "}
-        <Link href={"/my-thoughts"}>See my thoughts</Link>
+        <Button className="w-max text-amber-900" asChild variant="outline">
+          <Link href={"/my-thoughts"}>See my thoughts</Link>
+        </Button>
       </AlertDescription>
       <Button
         variant="ghost"

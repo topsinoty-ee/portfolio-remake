@@ -26,22 +26,11 @@ export async function addComment<T extends CommentType>(comment: T) {
   }
 
   try {
-    // Add your database logic here
-    // Example:
-    // await db.comment.create({
-    //   data: {
-    //     content: content.trim(),
-    //     userId: session.user.id,
-    //     // Add other required fields like postId, etc.
-    //   }
-    // });
-
     await createComment({
       ...comment,
       projectId,
     });
 
-    // Revalidate the page to show the new comment
     revalidatePath("/");
   } catch (error) {
     console.error("Error adding comment:", error);
