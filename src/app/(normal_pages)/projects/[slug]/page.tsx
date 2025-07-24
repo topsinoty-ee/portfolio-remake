@@ -170,7 +170,14 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
               </div>
             </div>
           </article>
-          <Comments comments={comments} slug={slug} userId={!!session ? session.user?.id : undefined} />
+          <Comments
+            comments={comments.map((c) => {
+              const { _id, ...rest } = c;
+              return { _id: _id.toJSON(), ...rest };
+            })}
+            slug={slug}
+            userId={!!session ? session.user?.id : undefined}
+          />
         </div>
 
         {/* Sidebar */}
