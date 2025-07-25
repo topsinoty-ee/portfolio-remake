@@ -1,9 +1,9 @@
 // import { ProjectCard } from "./components/card";
 import { List } from "./components/list";
-import { fetchProjects } from "~/app/api/projects/fetch";
+// import { fetchProjects } from "~/app/api/projects/fetch";
 
 export default async function ProjectsPage() {
-  const projects = await fetchProjects();
+  const projects: Record<string, string>[] = []; //await fetchProjects();
   return (
     <section className="flex h-full w-full flex-col justify-center gap-8">
       <div>

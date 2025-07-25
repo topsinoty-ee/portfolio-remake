@@ -1,8 +1,7 @@
 "use client";
 
 import { Button } from "~/components/ui/button";
-import { loginWithGithub } from "./login";
-import { logout } from "./logout";
+import { login, logout } from ".";
 import Link from "next/link";
 import type { ComponentProps } from "react";
 import { SessionProvider, useSession } from "next-auth/react";
@@ -11,7 +10,7 @@ type ButtonProps = ComponentProps<typeof Button>;
 type LinkProps = ComponentProps<typeof Link>;
 
 export const LoginButton = (props: Partial<ButtonProps> & { provider: "github" | "google" }) => (
-  <Button {...props} onClick={() => loginWithGithub()}>
+  <Button {...props} onClick={() => login("github")}>
     Login
   </Button>
 );

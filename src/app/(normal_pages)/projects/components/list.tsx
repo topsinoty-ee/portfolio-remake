@@ -1,9 +1,9 @@
 "use client";
 
-import type { ProjectPublicDetails } from "~/types/project";
+// import type { ProjectPublicDetails } from "~/types/project";
 import { ProjectCard } from "~/components/ui/projectCard";
 
-export const List = ({ projects }: { projects: ProjectPublicDetails[] }) => (
+export const List = ({ projects }: { projects: Record<string, string>[] }) => (
   <div className="columns-1 gap-6 space-y-6 sm:columns-2">
     {projects.map((project) => (
       <div key={project.id} className="break-inside-avoid">

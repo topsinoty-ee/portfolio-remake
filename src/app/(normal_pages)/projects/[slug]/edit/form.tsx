@@ -4,9 +4,9 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import z from "zod";
 import { BetterForm } from "~/components/ui/betterForm";
-import type { ProjectPrivateDetails } from "~/types/project";
+// import type { ProjectPrivateDetails } from "~/types/project";
 
-export const Form = ({ project }: { project: ProjectPrivateDetails }) => {
+export const Form = ({ project }: { project: Record<string, string> }) => {
   const schema = z.object({
     title: z.string().min(1, "Title is required"),
     description: z.string().min(1, "Description is required"),
@@ -38,10 +38,10 @@ export const Form = ({ project }: { project: ProjectPrivateDetails }) => {
           body: JSON.stringify(payload),
         }).then(async (res) => {
           if (!res.ok) {
-            const err = await res.json().catch((r) => r);
+            const err = await res.json().catch((r: unknown) => r);
             throw err instanceof Error ? err : new Error(String(err));
           }
-          return res.json();
+          return res.json() as object;
         }),
         {
           loading: "Submitting project...",
@@ -68,9 +68,9 @@ export const Form = ({ project }: { project: ProjectPrivateDetails }) => {
         link: project.link ?? "",
         repo: project.repo ?? "",
         for: project.for ?? "",
-        collaborators: project.collaborators ?? [],
-        isArchived: project.isArchived ?? false,
-        isFeatured: project.isFeatured ?? false,
+        // collaborators: project.collaborators ?? [],
+        // isArchived: project.isArchived ?? false,
+        // isFeatured: project.isFeatured ?? false,
       }}
       fields={[
         {

@@ -32,10 +32,10 @@ export const Form = () => {
           body: JSON.stringify(values),
         }).then(async (res) => {
           if (!res.ok) {
-            const err = await res.json().catch((r) => r);
+            const err = await res.json().catch((r: unknown) => r);
             throw err instanceof Error ? err : new Error(String(err));
           }
-          return res.json();
+          return res.json() as unknown;
         }),
         {
           loading: "Submitting project...",

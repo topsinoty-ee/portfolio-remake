@@ -1,11 +1,11 @@
 import { ProjectCard } from "~/components/ui/projectCard";
-import { fetchProjects } from "../../api/projects/fetch";
+// import { fetchProjects } from "../../api/projects/fetch";
 
 export const revalidate = 10;
 
 export async function ProjectsList() {
   try {
-    const projects = await fetchProjects();
+    const projects: Record<string, string>[] = []; //await fetchProjects();
     const featuredProjects = projects.filter((project) => project.isFeatured);
 
     return (

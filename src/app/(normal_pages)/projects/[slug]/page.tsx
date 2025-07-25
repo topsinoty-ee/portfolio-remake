@@ -1,17 +1,17 @@
 import Link from "next/link";
-import { fetchProjectBySlug, fetchProjects } from "~/app/api/projects/fetch";
+// import { fetchProjectBySlug, fetchProjects } from "~/app/api/projects/fetch";
 import { Calendar, ExternalLink, Users, Tag, GitBranch, Building2, ArrowLeft, Edit2 } from "lucide-react";
 import { Button } from "~/components/ui/button";
 import { Badge } from "~/components/ui/badge";
 import { Separator } from "~/components/ui/separator";
 import { auth } from "~/auth";
 import { env } from "~/env";
-import { Comments } from "./components/comments";
-import { fetchComments } from "~/app/api/comments/fetch";
+// import { Comments } from "./components/comments";
+// import { fetchComments } from "~/app/api/comments/fetch";
 
 export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
   const slug = await params.then((p) => p.slug);
-  const project = await fetchProjectBySlug(slug);
+  const project: Record<string, string> = {}; //await fetchProjectBySlug(slug);
   const session = await auth();
 
   const formatDate = (date?: string | Date) => {
@@ -24,7 +24,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
     });
   };
 
-  const comments = await fetchComments(slug);
+  const comments: Record<string, string | string[] | Record<string, string>>[] = []; //await fetchComments(slug);
 
   return (
     <div className="min-h-screen">
@@ -60,11 +60,11 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
               {project.skillsRequired && project.skillsRequired.length > 0 && (
                 <div className="mb-4 lg:hidden">
                   <div className="flex flex-wrap gap-2">
-                    {project.skillsRequired.slice(0, 6).map((skill, index) => (
+                    {/* {project.skillsRequired.slice(0, 6).map((skill, index) => (
                       <Badge key={index} variant="outline" className="text-xs">
                         {skill}
                       </Badge>
-                    ))}
+                    ))} */}
                     {project.skillsRequired.length > 3 && (
                       <Badge variant="outline" className="text-xs">
                         +{project.skillsRequired.length - 6} more
@@ -105,11 +105,11 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
             {/* Content */}
             <div className="py-6 lg:px-8">
               <div className="prose lg:prose-lg max-w-none">
-                {project.content.split("\n\n").map((paragraph, index) => (
+                {/* {project.content.split("\n\n").map((paragraph, index) => (
                   <p key={index} className="text-foreground mb-6 leading-relaxed">
                     {paragraph}
                   </p>
-                ))}
+                ))} */}
               </div>
             </div>
 
@@ -153,14 +153,14 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                   <div className="bg-card flex w-full items-center gap-2 rounded-md p-4 lg:hidden">
                     <span className="text-muted-foreground text-sm font-bold">Collaborators:</span>
                     <div className="flex -space-x-2">
-                      {project.collaborators.slice(0, 4).map((collaborator, index) => (
+                      {/* {project.collaborators.slice(0, 4).map((collaborator, index) => (
                         <div
                           key={index}
                           className="from-primary/40 to-accent/60 text-foreground ring-background flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br text-sm font-medium ring-2"
                         >
                           {collaborator.charAt(0).toUpperCase()}
                         </div>
-                      ))}
+                      ))} */}
                     </div>
                     {project.collaborators.length > 4 && (
                       <span className="text-muted-foreground text-sm">+{project.collaborators.length - 4}</span>
@@ -170,14 +170,14 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
               </div>
             </div>
           </article>
-          <Comments
-            comments={comments.map((c) => {
-              const { _id, ...rest } = c;
-              return { _id: _id.toJSON(), ...rest };
-            })}
+          {/* <Comments
+            // comments={comments.map((c) => {
+            //   const { _id, ...rest } = c;
+            //   return { _id: _id.toJSON(), ...rest };
+            // })}
             slug={slug}
             userId={!!session ? session.user?.id : undefined}
-          />
+          /> */}
         </div>
 
         {/* Sidebar */}
@@ -215,9 +215,9 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                 Skills Required
               </h3>
               <div className="flex flex-wrap gap-2">
-                {project.skillsRequired.map((skill, index) => (
+                {/* {project.skillsRequired.map((skill, index) => (
                   <Badge key={index}>{skill}</Badge>
-                ))}
+                ))} */}
               </div>
             </div>
           )}
@@ -230,7 +230,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                 Collaborators
               </h3>
               <div className="space-y-3">
-                {project.collaborators.map((collaborator, index) => (
+                {/* {project.collaborators.map((collaborator, index) => (
                   <div key={index} className="flex items-center gap-3">
                     <div className="from-primary/40 to-accent/60 text-foreground flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br text-sm font-medium">
                       {collaborator.charAt(0).toUpperCase()}
@@ -239,7 +239,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
                       {collaborator}
                     </Link>
                   </div>
-                ))}
+                ))} */}
               </div>
             </div>
           )}
@@ -284,9 +284,9 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
 
 export const revalidate = 60;
 
-export async function generateStaticParams() {
-  const projects = await fetchProjects();
-  return projects.map((project) => ({
-    slug: project.id,
-  }));
-}
+// export async function generateStaticParams() {
+//   const projects = await fetchProjects();
+//   return projects.map((project) => ({
+//     slug: project.id,
+//   }));
+// }
