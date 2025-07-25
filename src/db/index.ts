@@ -1,30 +1,11 @@
-import mongoose from "mongoose";
-import { env } from "~/env";
+import { PrismaClient } from "generated/prisma";
 
-declare global {
-  // noinspection ES6ConvertVarToLetConst
-  var _mongooseConnectionPromise: Promise<typeof mongoose> | undefined;
+const globalForPrisma = globalThis as unknown as {
+  prisma: PrismaClient | undefined;
+};
+
+export const db = globalForPrisma.prisma ?? new PrismaClient();
+
+if (process.env.NODE_ENV !== "production") {
+  globalForPrisma.prisma = db;
 }
-
-if (!env.MONGODB_URI || typeof env.MONGODB_URI !== "string") {
-  throw new Error("Missing or invalid MONGODB_URI in .env.local");
-}
-
-const uri = env.MONGODB_URI;
-
-let clientPromise: Promise<typeof mongoose>;
-
-if (env.NODE_ENV === "development") {
-  global._mongooseConnectionPromise ??= mongoose.connect(uri, {
-    serverSelectionTimeoutMS: 5000,
-    family: 4,
-  });
-  clientPromise = global._mongooseConnectionPromise;
-} else {
-  clientPromise = mongoose.connect(uri, {
-    serverSelectionTimeoutMS: 5000,
-    family: 4,
-  });
-}
-
-export { clientPromise };
