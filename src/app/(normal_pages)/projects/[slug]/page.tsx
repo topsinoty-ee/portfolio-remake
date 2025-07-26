@@ -24,7 +24,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
     });
   };
 
-  const comments: Record<string, string | string[] | Record<string, string>>[] = []; //await fetchComments(slug);
+  // const comments: Record<string, string | string[] | Record<string, string>>[] = []; //await fetchComments(slug);
 
   return (
     <div className="min-h-screen">

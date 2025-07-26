@@ -10,8 +10,11 @@ export async function ProjectsList() {
 
     return (
       <div className="grid h-full w-full grid-cols-1 gap-10 lg:grid-cols-2">
-        {featuredProjects.map((project) => (
-          <ProjectCard tagCount={4} {...project} key={project.id} />
+        {featuredProjects.map((project, idx) => (
+          <ProjectCard
+            // tagCount={4} {...project}
+            key={idx}
+          />
         ))}
       </div>
     );

@@ -1,31 +1,31 @@
 "use client";
-import { Building2, ExternalLink, User, Users } from "lucide-react";
+// import { Building2, ExternalLink, User, Users } from "lucide-react";
 import React, { memo, type FC } from "react";
 import { Separator } from "./separator";
-import { Button } from "./button";
-import { SiGithub } from "@icons-pack/react-simple-icons";
+// import { Button } from "./button";
+// import { SiGithub } from "@icons-pack/react-simple-icons";
 import Link from "next/link";
 import { format } from "date-fns";
-import type { ProjectPublicDetails } from "~/types/project";
+// import type { ProjectPublicDetails } from "~/types/project";
 import { cn } from "~/lib/utils";
 
-const openInNewTab = (url: string) => {
-  window.open(url, "_blank", "noopener,noreferrer");
-};
+// const openInNewTab = (url: string) => {
+//   window.open(url, "_blank", "noopener,noreferrer");
+// };
 
-export const ProjectCard: FC<ProjectPublicDetails & { tagCount?: number; showFeatured?: boolean }> = memo(
+export const ProjectCard: FC<Record<string, string | number>> = memo(
   ({
     title,
     description,
-    link,
-    repo,
-    for: forWho,
-    skillsRequired,
+    // link,
+    // repo,
+    // for: forWho,
+    // skillsRequired,
     id,
     isFeatured,
-    collaborators,
+    // collaborators,
     updatedAt,
-    tagCount = 4,
+    // tagCount = 4,
     showFeatured = false,
   }) => {
     const formattedDate = updatedAt ? format(new Date(updatedAt), "MMM dd, yyyy") : "-- / --";
@@ -52,7 +52,7 @@ export const ProjectCard: FC<ProjectPublicDetails & { tagCount?: number; showFea
               <p className="text-muted-foreground line-clamp-3 text-sm leading-relaxed">{description}</p>
             </div>
 
-            {skillsRequired && skillsRequired.length > 0 && (
+            {/* {skillsRequired && skillsRequired.length > 0 && (
               <div className="mb-4">
                 <div className="flex flex-wrap gap-2">
                   {skillsRequired.slice(0, tagCount).map((skill) => (
@@ -70,14 +70,14 @@ export const ProjectCard: FC<ProjectPublicDetails & { tagCount?: number; showFea
                   )}
                 </div>
               </div>
-            )}
+            )} */}
 
             <Separator className="my-4" />
 
             <div className="flex items-center justify-between gap-4">
               <div className="text-muted-foreground flex flex-1 items-center gap-4 text-xs">
                 <div className="flex min-w-0 flex-1 items-center gap-1">
-                  {forWho ? (
+                  {/* {forWho ? (
                     <>
                       <Building2 className="size-3 shrink-0" />
                       <span className="ml-1 truncate overflow-hidden text-ellipsis">
@@ -103,7 +103,7 @@ export const ProjectCard: FC<ProjectPublicDetails & { tagCount?: number; showFea
                       <User className="size-3 shrink-0" />
                       <span className="ml-1 truncate overflow-hidden text-ellipsis">Personal</span>
                     </>
-                  )}
+                  )} */}
                 </div>
                 {formattedDate && (
                   <div className="flex shrink-0 items-center gap-1">
@@ -113,7 +113,7 @@ export const ProjectCard: FC<ProjectPublicDetails & { tagCount?: number; showFea
               </div>
 
               <div className="hidden items-center gap-2 lg:flex">
-                {link && (
+                {/* {link && (
                   <Button
                     onClick={(e) => {
                       e.preventDefault();
@@ -140,7 +140,7 @@ export const ProjectCard: FC<ProjectPublicDetails & { tagCount?: number; showFea
                   >
                     <SiGithub className="size-4" />
                   </Button>
-                )}
+                )} */}
               </div>
             </div>
           </Link>
