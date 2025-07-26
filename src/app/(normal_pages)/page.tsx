@@ -13,7 +13,7 @@ import { ContactForm } from "./_components/contactForm";
 export default function HomePage() {
   return (
     <main className="flex flex-col gap-20 md:gap-32">
-      <section className="flex h-full max-h-max w-full flex-col gap-0 md:flex-row md:flex-wrap md:gap-20 lg:flex-nowrap">
+      <section className="flex h-full max-h-max min-h-[calc(100vh-6rem)] w-full flex-col gap-0 py-10 md:flex-row md:flex-wrap md:gap-20 md:py-20 lg:flex-nowrap">
         <div className="order-1 flex h-full min-h-96 w-full flex-col gap-15 md:gap-10">
           <div className="flex flex-col gap-2 md:gap-2.5">
             <Badge className="bg-secondary text-secondary-foreground rounded-2xl px-4 md:text-lg">Frontend dev</Badge>
@@ -73,7 +73,10 @@ export default function HomePage() {
           </Button>
         </div>
       </section>
-      <section id="aboutMe" className="flex h-full min-h-max w-full flex-col items-start gap-15 md:gap-20 lg:flex-row">
+      <section
+        id="aboutMe"
+        className="flex h-full min-h-[calc(100vh-8rem)] w-full flex-col items-start gap-15 md:gap-20 lg:flex-row"
+      >
         <div className="flex h-max w-full flex-col items-start gap-5">
           <TooltipProvider>
             <Tooltip>

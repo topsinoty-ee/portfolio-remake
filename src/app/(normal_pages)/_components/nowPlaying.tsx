@@ -1,7 +1,6 @@
-"use client"; // Mark as Client Component
-
+"use client";
 import { SiSpotify } from "@icons-pack/react-simple-icons";
-import { useEffect, useState } from "react";
+import useSWR from "swr";
 import { cn } from "~/lib/utils";
 
 export interface Track {
@@ -9,65 +8,60 @@ export interface Track {
   name: string;
   url: string;
   "@attr"?: {
-    nowPlaying: true;
+    nowplaying?: boolean; // Last.fm uses lowercase
   };
 }
 
-export const NowPlaying = () => {
-  const [track, setTrack] = useState<Track | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+const fetcher = async (url: string): Promise<Track> => {
+  const res = await fetch(url);
+  if (!res.ok) throw new Error("Failed to fetch track");
+  return res.json() as Promise<Track>;
+};
 
-  useEffect(() => {
-    const fetchTrack = async () => {
-      try {
-        const res = await fetch("/api/spotify");
-        const track = (await res.json()) as Track;
-        setTrack(track);
-      } catch (error) {
-        console.error("Failed to fetch track:", error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    const intervalId = setInterval(() => {
-      void fetchTrack();
-    }, 10000);
+export function NowPlaying() {
+  const {
+    data: track,
+    error,
+    isLoading,
+  } = useSWR<Track>("/api/spotify", fetcher, {
+    refreshInterval: 15000,
+    revalidateOnFocus: true,
+    onErrorRetry: (error) => {
+      if (error.message.includes("404")) return;
+    },
+  });
 
-    void fetchTrack();
-
-    return () => clearInterval(intervalId);
-  }, []);
-
-  if (isLoading) {
-    return (
-      <div className="bg-muted/40 flex items-center gap-2.5 rounded-b-lg p-4 text-xs">
-        <SiSpotify size={12} className="text-primary" />
-      </div>
-    );
-  }
+  const isPlaying = track?.["@attr"]?.nowplaying;
+  const showTrack = track?.name && track.artist?.["#text"];
 
   return (
     <div className="bg-muted/40 flex items-center gap-2.5 rounded-b-lg p-4 text-xs">
       <SiSpotify
         size={12}
         className={cn("text-primary", {
-          "animate-[spin_2s_linear_infinite]": !track?.["@attr"]?.nowPlaying,
+          "animate-spin": isPlaying,
+          "text-destructive": error,
         })}
       />
-      {isLoading ? (
-        <span className="text-muted-foreground">Loading...</span>
-      ) : track ? (
-        <a
-          href={track.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-accent hover:text-primary underline underline-offset-2"
-        >
-          {track.artist["#text"]} — {track.name}
-        </a>
-      ) : (
-        <span className="text-muted-foreground">Not playing anything rn</span>
-      )}
+
+      <div className="min-w-[180px]">
+        {error ? (
+          <span className="text-destructive">Failed to load</span>
+        ) : isLoading ? (
+          <span className="text-muted-foreground">Loading...</span>
+        ) : showTrack ? (
+          <a
+            href={track.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-accent hover:text-primary underline underline-offset-2"
+          >
+            {track.artist["#text"]} &bull; {track.name}
+          </a>
+        ) : (
+          <span className="text-muted-foreground">Not playing</span>
+        )}
+      </div>
     </div>
   );
-};
+}

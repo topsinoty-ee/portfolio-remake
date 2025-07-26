@@ -5,6 +5,7 @@ import { login, logout } from ".";
 import Link from "next/link";
 import type { ComponentProps } from "react";
 import { SessionProvider, useSession } from "next-auth/react";
+import { cn } from "../utils";
 
 type ButtonProps = ComponentProps<typeof Button>;
 type LinkProps = ComponentProps<typeof Link>;
@@ -19,11 +20,13 @@ export const LoginButton = (props: Partial<ButtonProps> & { provider: "github" |
 export const LogoutButton = (props?: ButtonProps) => {
   const { data: session, status } = useSession<true>();
   if (!session) return null;
-  console.log(status);
-  console.log(session);
 
   return (
-    <Button {...props} onClick={() => logout()}>
+    <Button
+      {...props}
+      className={cn({ hidden: status !== "authenticated" }, props?.className)}
+      onClick={() => logout()}
+    >
       Logout
     </Button>
   );
