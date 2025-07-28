@@ -6,7 +6,6 @@
 
 generator client {
     provider = "prisma-client-js"
-    output   = "../src/generated/prisma"
 }
 
 datasource db {
@@ -32,7 +31,12 @@ model User {
 
 model Contributor {
     id              String     @id @default(auto()) @map("_id") @db.ObjectId
-    email           String     @unique
+    email           String?    @unique
+    name            String
+    github          String?    @unique
+    linkedIn        String?    @unique
+    Website         String?    @unique
+    Twitter         String?    @unique
     linkedPlatforms Platform[]
     projectIds      String[]   @db.ObjectId
     user            User?

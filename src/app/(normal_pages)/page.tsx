@@ -12,9 +12,9 @@ import { ContactForm } from "./_components/contactForm";
 
 export default function HomePage() {
   return (
-    <main className="flex flex-col gap-20 md:gap-32">
-      <section className="flex h-full max-h-max min-h-[calc(100vh-6rem)] w-full flex-col gap-0 py-10 md:flex-row md:flex-wrap md:gap-20 md:py-20 lg:flex-nowrap">
-        <div className="order-1 flex h-full min-h-96 w-full flex-col gap-15 md:gap-10">
+    <main className="flex flex-col gap-20 md:gap-0">
+      <section className="flex h-full max-h-max min-h-[calc(100vh-6rem)] w-full flex-col gap-10 py-10 md:flex-row md:flex-wrap md:gap-20 md:py-20 lg:flex-nowrap">
+        <div className="order-1 flex h-full min-h-min w-full flex-col gap-15 md:min-h-96 md:gap-10">
           <div className="flex flex-col gap-2 md:gap-2.5">
             <Badge className="bg-secondary text-secondary-foreground rounded-2xl px-4 md:text-lg">Frontend dev</Badge>
             <div>
@@ -41,7 +41,10 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-      <section id="projects" className="flex h-full w-full flex-col items-center gap-15 md:gap-20">
+      <section
+        id="projects"
+        className="flex h-full max-h-max min-h-[calc(90vh-6rem)] w-full flex-col items-center gap-15 md:gap-20"
+      >
         <div className="flex w-full flex-col gap-10">
           <div className="flex flex-col items-center gap-2.5 text-center">
             <Badge className="select-none" variant={"default"}>
@@ -149,7 +152,6 @@ export default function HomePage() {
               <p className="text-muted-foreground text-sm font-light md:text-lg">I&apos;m almost always online</p>
             </div>
           </div>
-          {/* <Socials withText /> */}
         </div>
         <ContactForm />
       </section>

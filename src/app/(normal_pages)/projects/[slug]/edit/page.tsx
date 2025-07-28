@@ -1,4 +1,4 @@
-// import { fetchProjectBySlug } from "~/app/api/projects/fetch";
+import { db } from "~/db";
 import { Form } from "./form";
 import { notFound } from "next/navigation";
 
@@ -8,7 +8,12 @@ export default async function EditProjectPage({ params }: { params: Promise<{ sl
     notFound();
   }
   try {
-    const project = {}; //await fetchProjectBySlug(slug);
+    const project = await db.project.findUnique({
+      where: { slug },
+    });
+    if (!project) {
+      throw new Error();
+    }
     return (
       <div className="bg-card border-border container mx-auto flex h-full w-full flex-col justify-center gap-10 rounded-md border p-4 shadow">
         <h1 className="text-3xl font-bold">Edit Project: {slug}</h1>

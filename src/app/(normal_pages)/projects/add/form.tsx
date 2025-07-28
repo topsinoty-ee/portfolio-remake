@@ -108,22 +108,6 @@ export const Form = () => {
           label: "For (Client / Purpose)",
           type: "text",
         },
-        // {
-        //   name: "collaborators",
-        //   label: "Collaborators",
-        //   type: "tags",
-        //   description: "Type names or emails, press enter to add.",
-        // },
-        // {
-        //   name: "isArchived",
-        //   label: "Archived?",
-        //   type: "checkbox",
-        // },
-        // {
-        //   name: "isFeatured",
-        //   label: "Featured?",
-        //   type: "checkbox",
-        // },
       ]}
       onSubmit={handleSubmit}
     />

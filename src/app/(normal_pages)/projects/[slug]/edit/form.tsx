@@ -1,12 +1,12 @@
 "use client";
 
+import type { Project } from "@prisma/client";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import z from "zod";
 import { BetterForm } from "~/components/ui/betterForm";
-// import type { ProjectPrivateDetails } from "~/types/project";
 
-export const Form = ({ project }: { project: Record<string, string> }) => {
+export const Form = ({ project }: { project: Omit<Project, "id" | "contributorIds" | "status"> }) => {
   const schema = z.object({
     title: z.string().min(1, "Title is required"),
     description: z.string().min(1, "Description is required"),
@@ -22,7 +22,7 @@ export const Form = ({ project }: { project: Record<string, string> }) => {
   const router = useRouter();
 
   async function handleSubmit(values: z.infer<typeof schema>): Promise<void> {
-    const { id: slug, ...rest } = project;
+    const { slug, ...rest } = project;
 
     const payload = {
       ...rest,
@@ -41,7 +41,7 @@ export const Form = ({ project }: { project: Record<string, string> }) => {
             const err = await res.json().catch((r: unknown) => r);
             throw err instanceof Error ? err : new Error(String(err));
           }
-          return res.json() as object;
+          return res.json();
         }),
         {
           loading: "Submitting project...",
@@ -63,14 +63,11 @@ export const Form = ({ project }: { project: Record<string, string> }) => {
       formSchema={schema}
       defaultValues={{
         title: project.title,
-        description: project.description,
-        content: project.content,
+        description: project.description ?? "",
+        content: project.content ?? "",
         link: project.link ?? "",
         repo: project.repo ?? "",
         for: project.for ?? "",
-        // collaborators: project.collaborators ?? [],
-        // isArchived: project.isArchived ?? false,
-        // isFeatured: project.isFeatured ?? false,
       }}
       fields={[
         {
@@ -106,22 +103,6 @@ export const Form = ({ project }: { project: Record<string, string> }) => {
           label: "For (Client / Purpose)",
           type: "text",
         },
-        // {
-        //   name: "collaborators",
-        //   label: "Collaborators",
-        //   type: "tags",
-        //   description: "Type names or emails, press enter to add.",
-        // },
-        // {
-        //   name: "isArchived",
-        //   label: "Archived?",
-        //   type: "checkbox",
-        // },
-        // {
-        //   name: "isFeatured",
-        //   label: "Featured?",
-        //   type: "checkbox",
-        // },
       ]}
       onSubmit={handleSubmit}
     />

@@ -8,7 +8,7 @@ export interface Track {
   name: string;
   url: string;
   "@attr"?: {
-    nowplaying?: boolean; // Last.fm uses lowercase
+    nowplaying?: boolean;
   };
 }
 

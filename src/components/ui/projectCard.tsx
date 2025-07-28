@@ -2,13 +2,28 @@ import { Building2, User, Users } from "lucide-react";
 import { memo } from "react";
 import { Separator } from "./separator";
 import { format } from "date-fns";
-import type { Project } from "~/generated/prisma";
 import { ProjectCardActions, ProjectCardLink } from "./project-actions";
+import { cn } from "~/lib/utils";
+import type { Project } from "@prisma/client";
 
-export type ProjectCardType = Omit<Project, "content" | "status">;
+export type ProjectCardType = Omit<Project, "content" | "status"> & {
+  showBanner?: boolean;
+};
 
 export const ProjectCard = memo(
-  ({ title, description, link, repo, slug, for: forWho, skillsUsed, contributorIds, lastUpdated }: ProjectCardType) => {
+  ({
+    title,
+    description,
+    link,
+    repo,
+    slug,
+    for: forWho,
+    skillsUsed,
+    contributorIds,
+    lastUpdated,
+    isFeatured,
+    showBanner = true,
+  }: ProjectCardType) => {
     const tagCount = 6;
 
     const formattedDate = lastUpdated ? format(lastUpdated, "MMM yyyy") : "-- / --";
@@ -16,8 +31,22 @@ export const ProjectCard = memo(
     return (
       <div className="group relative mb-6 h-max break-inside-avoid">
         <div className="border-border bg-card hover:border-primary/50 relative overflow-hidden rounded-xl border shadow-sm transition-all duration-300 hover:shadow-md">
-          <div className="from-secondary/50 via-primary to-primary/40 absolute inset-0 h-4 bg-gradient-to-r opacity-100 transition-opacity duration-300 group-hover:opacity-0" />
-          <div className="from-primary/40 via-secondary/50 to-primary absolute inset-0 h-4 bg-gradient-to-r opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+          {isFeatured && (
+            <>
+              <div
+                className={cn(
+                  "from-secondary/50 via-primary to-primary/40 absolute inset-0 h-4 bg-gradient-to-r opacity-100 transition-opacity duration-300 group-hover:opacity-0",
+                  { hidden: !showBanner },
+                )}
+              />
+              <div
+                className={cn(
+                  "from-primary/40 via-secondary/50 to-primary absolute inset-0 h-4 bg-gradient-to-r opacity-0 transition-opacity duration-300 group-hover:opacity-100",
+                  { hidden: !showBanner },
+                )}
+              />
+            </>
+          )}
           <ProjectCardLink slug={slug}>
             <div className="p-6">
               <div className="mb-4">
