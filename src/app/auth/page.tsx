@@ -3,7 +3,7 @@
 import { SiGithub, SiGoogle } from "@icons-pack/react-simple-icons";
 import { Button } from "~/components/ui/button";
 import { SectionHeader } from "~/components/ui/sectionHeader";
-import { loginWithGithub, loginWithGoogle } from "~/lib/auth/login";
+import { login } from "~/lib/auth";
 
 export default function LoginPage() {
   return (
@@ -18,10 +18,10 @@ export default function LoginPage() {
         </SectionHeader>
         <small>Trust me...there&apos;s a reason this exists</small>
         <div className="my-4 flex aspect-square w-full flex-col gap-4 **:w-max">
-          <Button onClick={() => loginWithGithub()}>
+          <Button onClick={() => login("github")}>
             Login with Github <SiGithub />
           </Button>
-          <Button onClick={() => loginWithGoogle()}>
+          <Button onClick={() => login("google")}>
             Login with Google <SiGoogle />
           </Button>
         </div>

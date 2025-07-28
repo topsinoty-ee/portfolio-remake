@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { auth } from "./auth";
-import { env } from "./env"; // make sure this exists
+import { env } from "./env";
 
 const adminProtectedPatterns = [/^\/projects\/[^\/]+\/edit$/, /^\/projects\/add$/, /^\/api\/projects$/];
 

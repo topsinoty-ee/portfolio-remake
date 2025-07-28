@@ -9,7 +9,6 @@ import { useState } from "react";
 import { format } from "date-fns/format";
 import { et } from "date-fns/locale";
 
-// Strict type definitions
 type Priority = "low" | "medium" | "high";
 type IssueStatus = "open" | "in-progress" | "completed";
 type FeatureStatus = "planned" | "in-development" | "completed";
@@ -238,7 +237,6 @@ export default function DevJournal() {
         <p className="text-muted-foreground">Track your development progress</p>
       </div>
 
-      {/* Stats Overview */}
       <div className="mb-6 grid grid-cols-2 gap-4 sm:grid-cols-4">
         <Card className="bg-card">
           <CardContent className="p-4">

@@ -1,4 +1,23 @@
 {
   "conventionalCommits.scopes": ["eslint", "codebase"],
-  "typescript.tsdk": "node_modules/typescript/lib"
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    "**/node_modules": true,
+    "**/.idea": true,
+    "**/.next": false,
+    "**/generated": false,
+    "**/postcss.config.js": true,
+    "*.js": true,
+    "postcss.config.js": true,
+    "**/*.js": true,
+    "**/next-env.d.ts": true,
+    "next-env.d.ts": true
+  },
+  "explorerExclude.backup": {},
+  "WillLuke.nextjs.hasPrompted": true
 }

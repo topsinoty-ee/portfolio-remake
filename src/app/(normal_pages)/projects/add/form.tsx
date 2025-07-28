@@ -32,10 +32,10 @@ export const Form = () => {
           body: JSON.stringify(values),
         }).then(async (res) => {
           if (!res.ok) {
-            const err = await res.json().catch((r) => r);
+            const err = await res.json().catch((r: unknown) => r);
             throw err instanceof Error ? err : new Error(String(err));
           }
-          return res.json();
+          return res.json() as unknown;
         }),
         {
           loading: "Submitting project...",
@@ -108,22 +108,6 @@ export const Form = () => {
           label: "For (Client / Purpose)",
           type: "text",
         },
-        // {
-        //   name: "collaborators",
-        //   label: "Collaborators",
-        //   type: "tags",
-        //   description: "Type names or emails, press enter to add.",
-        // },
-        // {
-        //   name: "isArchived",
-        //   label: "Archived?",
-        //   type: "checkbox",
-        // },
-        // {
-        //   name: "isFeatured",
-        //   label: "Featured?",
-        //   type: "checkbox",
-        // },
       ]}
       onSubmit={handleSubmit}
     />

@@ -7,6 +7,7 @@ import { env } from "~/env";
 import { type ReactNode } from "react";
 import { WipBanner } from "~/components/layout/isInDev";
 import { auth } from "~/auth";
+import "@total-typescript/ts-reset";
 import { AuthWrapper } from "~/lib/auth/components";
 
 const jsonLd = {
