@@ -63,7 +63,7 @@ const SAMPLE_DATA = {
       title: "Actually broken data model...",
       description: "remaking the new data model and flow in a new branch",
       priority: "high",
-      status: "open",
+      status: "completed",
       tags: ["stupid mistake", "remake", "structure", "bug"],
       createdAt: new Date("2025-07-24"),
     },
